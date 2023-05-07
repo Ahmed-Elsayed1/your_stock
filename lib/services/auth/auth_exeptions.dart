@@ -14,3 +14,5 @@ class InvalidEmailAuthException implements Exception {}
 class GenericAuthException implements Exception {}
 
 class UserNotLoggedInException implements Exception {}
+
+class DifferentConfirmPassword{}

@@ -16,12 +16,14 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final TextEditingController _confirmpassword;
 
 //connect the objects with the controllers witch text fields connected to.
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+    _confirmpassword = TextEditingController();
     super.initState();
   }
 
@@ -30,6 +32,7 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _confirmpassword.dispose();
     super.dispose();
   }
 
@@ -37,7 +40,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register"),
+        title: const Text("Signup"),
       ),
       body: Column(
         children: [
@@ -47,7 +50,7 @@ class _RegisterViewState extends State<RegisterView> {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              hintText: "Enter your email here",
+              hintText: "Ex:.. yourstock@example.com",
             ),
           ),
           TextField(
@@ -56,17 +59,28 @@ class _RegisterViewState extends State<RegisterView> {
             enableSuggestions: false,
             autocorrect: false,
             decoration: const InputDecoration(
-              hintText: "Enter your password here",
+              hintText: "Enter Password here",
+            ),
+          ),
+          TextField(
+            controller: _confirmpassword,
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            decoration: const InputDecoration(
+              hintText: "Confirm password here",
             ),
           ),
           TextButton(
             onPressed: () async {
               final email = _email.text;
               final password = _password.text;
+              final confirmpassword = _confirmpassword.text;
               try {
                 await AuthService.firebase().createUser(
                   email: email,
                   password: password,
+                  confirmpassword: confirmpassword,
                 );
                 AuthService.firebase().sendEmailVerification();
                 Navigator.of(context).pushNamed(
@@ -85,16 +99,21 @@ class _RegisterViewState extends State<RegisterView> {
               } on InvalidEmailAuthException {
                 showErrorDialog(
                   context,
-                  'Email already in use.',
+                  'Invalid email.',
                 );
               } on GenericAuthException {
                 showErrorDialog(
                   context,
-                  'Faild to register',
+                  'Faild to signup',
+                );
+              } on DifferentConfirmPassword {
+                showErrorDialog(
+                  context,
+                  'Password and Confirm Password are different',
                 );
               }
             },
-            child: const Text("Register"),
+            child: const Text("Signup"),
           ),
           TextButton(
             onPressed: () {
@@ -103,7 +122,7 @@ class _RegisterViewState extends State<RegisterView> {
                 (route) => false,
               );
             },
-            child: const Text("Already registered? login here."),
+            child: const Text("Already have an account? login here."),
           ),
         ],
       ),

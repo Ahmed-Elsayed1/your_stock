@@ -11,8 +11,9 @@ class FirebaseAuthProvider implements AuthProvider {
   Future<AuthUser> createUser({
     required String email,
     required String password,
+    required String confirmpassword,
   }) async {
-    try {
+    if(password == confirmpassword){try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -35,6 +36,8 @@ class FirebaseAuthProvider implements AuthProvider {
       }
     } catch (_) {
       throw GenericAuthException();
+    }}else{
+      throw DifferentConfirmPassword();
     }
   }
 
