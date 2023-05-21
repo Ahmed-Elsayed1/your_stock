@@ -29,6 +29,13 @@
             {
               "client_id": "851114143104-4tf538mshups3iu8l4un07bsovonkrc7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "851114143104-jio2n74dbcsaangmee42ti5okqf7gg33.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "eg.Almoghair.yourstock"
+              }
             }
           ]
         }
