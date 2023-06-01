@@ -1,24 +1,22 @@
 import 'package:yourstock/models/search_model.dart';
+import 'package:yourstock/shared/cubit/cubit.dart';
 
-abstract class AppStates{}
+abstract class AppStates {}
 
-class AppInitialState extends AppStates{}
+class AppInitialState extends AppStates {}
 
-class AppBottomNavState extends AppStates{}
-class GetStocksLoadingState extends AppStates{}
+class AppBottomNavState extends AppStates {}
 
-class StocksGetStocksSuccessState extends AppStates{}
-// class SearchState extends AppStates{}
+class GetStocksLoadingState extends AppStates {}
 
-class StocksGetStocksErrorState extends AppStates{
+class StocksGetStocksSuccessState extends AppStates {}
+
+class StocksGetStocksErrorState extends AppStates {
   late final String error;
   StocksGetStocksErrorState(this.error);
 }
 
-class StocksGetStockSymbolState extends AppStates{
-
-}
-
+class StocksGetStockSymbolState extends AppStates {}
 
 class SearchState extends AppStates {
   final SearchSymbol? searchSymbol;

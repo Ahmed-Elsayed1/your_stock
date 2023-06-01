@@ -44,85 +44,103 @@ class _RegisterViewState extends State<RegisterView> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: "Ex:.. yourstock@example.com",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: TextField(
+              controller: _email,
+              enableSuggestions: false,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                hintText: "Ex:.. yourstock@example.com",
+              ),
             ),
           ),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: const InputDecoration(
-              hintText: "Enter Password here",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: TextField(
+              controller: _password,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                hintText: "Enter Password here",
+              ),
             ),
           ),
-          TextField(
-            controller: _confirmpassword,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: const InputDecoration(
-              hintText: "Confirm password here",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: TextField(
+              controller: _confirmpassword,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                hintText: "Confirm password here",
+              ),
             ),
           ),
-          TextButton(
-            onPressed: () async {
-              final email = _email.text;
-              final password = _password.text;
-              final confirmpassword = _confirmpassword.text;
-              try {
-                await AuthService.firebase().createUser(
-                  email: email,
-                  password: password,
-                  confirmpassword: confirmpassword,
-                );
-                AuthService.firebase().sendEmailVerification();
-                Navigator.of(context).pushNamed(
-                  verifyRoute,
-                );
-              } on WeakPasswordAuthException {
-                showErrorDialog(
-                  context,
-                  'Weak password.',
-                );
-              } on EmailAlreadyInUseAuthException {
-                showErrorDialog(
-                  context,
-                  'Email already in use.',
-                );
-              } on InvalidEmailAuthException {
-                showErrorDialog(
-                  context,
-                  'Invalid email.',
-                );
-              } on GenericAuthException {
-                showErrorDialog(
-                  context,
-                  'Faild to signup',
-                );
-              } on DifferentConfirmPassword {
-                showErrorDialog(
-                  context,
-                  'Password and Confirm Password are different',
-                );
-              }
-            },
-            child: const Text("Signup"),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ElevatedButton(
+              onPressed: () async {
+                final email = _email.text;
+                final password = _password.text;
+                final confirmpassword = _confirmpassword.text;
+                try {
+                  await AuthService.firebase().createUser(
+                    email: email,
+                    password: password,
+                    confirmpassword: confirmpassword,
+                  );
+                  AuthService.firebase().sendEmailVerification();
+                  Navigator.of(context).pushNamed(
+                    verifyRoute,
+                  );
+                } on WeakPasswordAuthException {
+                  showErrorDialog(
+                    context,
+                    'Weak password.',
+                  );
+                } on EmailAlreadyInUseAuthException {
+                  showErrorDialog(
+                    context,
+                    'Email already in use.',
+                  );
+                } on InvalidEmailAuthException {
+                  showErrorDialog(
+                    context,
+                    'Invalid email.',
+                  );
+                } on GenericAuthException {
+                  showErrorDialog(
+                    context,
+                    'Faild to signup',
+                  );
+                } on DifferentConfirmPassword {
+                  showErrorDialog(
+                    context,
+                    'Password and Confirm Password are different',
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              child: const Text("Signup"),
+            ),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                loginRoute,
-                (route) => false,
-              );
-            },
-            child: const Text("Already have an account? login here."),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  loginRoute,
+                  (route) => false,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, foregroundColor: Colors.black),
+              child: const Text("Already have an account? login here."),
+            ),
           ),
         ],
       ),

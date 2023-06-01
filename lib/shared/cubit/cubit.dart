@@ -1,6 +1,6 @@
 // import 'package:bloc/bloc.dart';
 import 'dart:developer';
-
+// import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +9,7 @@ import 'package:yourstock/shared/cubit/states.dart';
 import 'package:yourstock/layout/screens/search_result_screen.dart';
 import 'package:yourstock/layout/screens/stocks_screen.dart';
 import 'package:yourstock/layout/screens/watchlist_screen.dart';
+// import 'package:yourstock/shared/network/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
