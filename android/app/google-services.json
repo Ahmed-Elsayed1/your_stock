@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "851114143104-4tf538mshups3iu8l4un07bsovonkrc7.apps.googleusercontent.com",
+          "client_id": "851114143104-a5add3c0hgqogbgb0cbc01cq0vu6fnfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eg.Almoghair.yourstock",
+            "certificate_hash": "af9efe377952a854d8f3a351cb2f2219787746b4"
+          }
+        },
+        {
+          "client_id": "851114143104-fv6881n1tqavq0l11ecqls9bg7l46d8h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

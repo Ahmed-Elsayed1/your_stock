@@ -10,9 +10,14 @@ class EmailAlreadyInUseAuthException implements Exception {}
 
 class InvalidEmailAuthException implements Exception {}
 
+// google signin exceptions
+class AccountExistsWithDifferentCredentialAuthException implements Exception {}
+
+class InvalidCredentialAuthException implements Exception {}
+
 // generic exceptions
 class GenericAuthException implements Exception {}
 
 class UserNotLoggedInException implements Exception {}
 
-class DifferentConfirmPassword{}
+class DifferentConfirmPassword {}

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yourstock/services/auth/auth_user.dart';
 
 abstract class AuthProvider {
@@ -16,6 +17,8 @@ abstract class AuthProvider {
   });
 
   Future<void> logOut();
+
+  Future<User?> signInWithGoogle();
 
   Future<void> sendEmailVerification();
 }

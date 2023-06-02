@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
 import 'package:yourstock/services/auth/auth_service.dart';
+import 'package:yourstock/services/auth/google_signin_button.dart';
 import 'package:yourstock/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
@@ -116,7 +117,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(top: 10, bottom: 20),
             child: ElevatedButton(
                 onPressed: (() {
                   //go to registration view.
@@ -129,6 +130,24 @@ class _LoginViewState extends State<LoginView> {
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black),
                 child: const Text("Don't have an account yet? signup here. ")),
+          ),
+          FutureBuilder(
+            future: AuthService.firebase().initialize(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                showErrorDialog(
+                  context,
+                  'Error initializing Firebase',
+                );
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return const GoogleSignInButton();
+              }
+              return const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Colors.orange,
+                ),
+              );
+            },
           ),
         ],
       ),
