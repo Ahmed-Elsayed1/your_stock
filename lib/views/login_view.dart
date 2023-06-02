@@ -4,6 +4,7 @@ import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
 import 'package:yourstock/services/auth/auth_service.dart';
 import 'package:yourstock/services/auth/google_signin_button.dart';
+import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 import 'package:yourstock/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
@@ -78,6 +79,8 @@ class _LoginViewState extends State<LoginView> {
                   );
                   final user = AuthService.firebase().currentUser;
                   if (user?.isEmailVerified ?? false) {
+                    final watchlistDb = WatchlistDb();
+                    watchlistDb.createWatchlist();
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       homeRoute,
                       (route) => false,

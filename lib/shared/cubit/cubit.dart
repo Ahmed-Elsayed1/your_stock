@@ -1,15 +1,12 @@
-// import 'package:bloc/bloc.dart';
 import 'dart:developer';
-// import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yourstock/layout/screens/settings_screen.dart';
 import 'package:yourstock/models/search_model.dart';
 import 'package:yourstock/shared/cubit/states.dart';
-import 'package:yourstock/layout/screens/search_result_screen.dart';
 import 'package:yourstock/layout/screens/stocks_screen.dart';
 import 'package:yourstock/layout/screens/watchlist_screen.dart';
-// import 'package:yourstock/shared/network/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -38,23 +35,19 @@ class AppCubit extends Cubit<AppStates> {
     //   ),
     //   label: 'Science',
     // ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(
-    //     Icons.settings,
-    //   ),
-    //   label: 'Settings',
-    // ),
+    const BottomNavigationBarItem(
+      icon: Icon(
+        Icons.settings,
+      ),
+      label: 'Settings',
+    ),
   ];
-  void changeIndex(int index) {
-    currentIndex = index;
-  }
 
   List<Widget> screens = [
     const StocksScreen(),
     const WatchlistScreen(),
-    const SearchResultScreen(),
+    const SettingsScreen(),
     // ScienceScreen(),
-    // SettingsScreen(),
   ];
 
   void changeBottomNavBar(int index) {

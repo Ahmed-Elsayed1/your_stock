@@ -1,5 +1,4 @@
 import 'package:yourstock/models/search_model.dart';
-import 'package:yourstock/shared/cubit/cubit.dart';
 
 abstract class AppStates {}
 

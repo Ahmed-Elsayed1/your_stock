@@ -2,6 +2,8 @@ class DatabaseAlreadyOpenException implements Exception {}
 
 class UnableToGetDocumentsDirectory implements Exception {}
 
+class CouldNotCreateUserDocument implements Exception {}
+
 class DatabaseNotOpen implements Exception {}
 
 class CouldNotDeleteUser implements Exception {}

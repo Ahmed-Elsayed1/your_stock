@@ -20,4 +20,6 @@ class GenericAuthException implements Exception {}
 
 class UserNotLoggedInException implements Exception {}
 
+class RequiresRecentLogin implements Exception {}
+
 class DifferentConfirmPassword {}

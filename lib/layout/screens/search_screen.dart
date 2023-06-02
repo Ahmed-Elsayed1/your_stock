@@ -16,7 +16,6 @@ class SearchSecreen extends StatefulWidget {
 class _SearchSecreenState extends State<SearchSecreen> {
   Dio dio = Dio();
 
-  // late final SearchSymbol _searchSymbol = SearchSymbol(bestMatches: []);
   var searchController = TextEditingController();
 
   @override
@@ -29,8 +28,6 @@ class _SearchSecreenState extends State<SearchSecreen> {
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = AppCubit.get(context);
-            cubit.changeIndex(2);
-            // var _searchSymbol = AppCubit.get(context).SearchResultScreen;
             return Column(
               children: [
                 Padding(

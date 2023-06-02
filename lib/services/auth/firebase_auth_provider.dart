@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourstock/firebase_options.dart';
 import 'package:yourstock/services/auth/auth_user.dart';
@@ -13,8 +12,11 @@ import 'package:firebase_auth/firebase_auth.dart'
         GoogleAuthProvider,
         User,
         UserCredential;
+import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
   @override
   Future<AuthUser> createUser({
     required String email,
@@ -29,6 +31,8 @@ class FirebaseAuthProvider implements AuthProvider {
         );
         final user = currentUser;
         if (user != null) {
+          final watchlistDb = WatchlistDb();
+          watchlistDb.createWatchlist();
           return user;
         } else {
           throw UserNotLoggedInException();
@@ -73,6 +77,8 @@ class FirebaseAuthProvider implements AuthProvider {
       );
       final user = currentUser;
       if (user != null) {
+        final watchlistDb = WatchlistDb();
+        watchlistDb.createWatchlist();
         return user;
       } else {
         throw UserNotLoggedInException();
@@ -95,6 +101,9 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   Future<void> logOut() async {
     final user = FirebaseAuth.instance.currentUser;
+    if (googleSignIn != null) {
+      await googleSignIn.disconnect();
+    }
     if (user != null) {
       await FirebaseAuth.instance.signOut();
     } else {
@@ -117,10 +126,7 @@ class FirebaseAuthProvider implements AuthProvider {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
 
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
+    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
@@ -148,6 +154,21 @@ class FirebaseAuthProvider implements AuthProvider {
     }
 
     return user;
+  }
+
+  Future<void> deleteUser() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.delete();
+      if (googleSignIn != null) {
+        await googleSignIn.disconnect();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "requires-recent-login") {
+        throw RequiresRecentLogin();
+      } else {
+        throw GenericAuthException();
+      }
+    }
   }
 
   @override
