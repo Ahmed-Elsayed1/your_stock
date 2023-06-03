@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yourstock/services/crud/crud_exception.dart';
 
-class WatchlistDb {
+class CloudDb {
   String userId = FirebaseAuth.instance.currentUser!.uid;
-  final tickerList = [];
   final CollectionReference collection =
       FirebaseFirestore.instance.collection("usersWatchlist");
 
   Future<void> createWatchlist() async {
     if (await isWatchlistExist() == false) {
+      const tickerList = <String>[];
       final user = <String, dynamic>{"userId": userId, "ticker": tickerList};
       try {
         await collection.doc(userId).set(user);
@@ -30,5 +30,51 @@ class WatchlistDb {
 
   Future<void> deleteWatchlist() async {
     collection.doc(userId).delete();
+  }
+
+  Future<Map<String, dynamic>> getDocumentData() async {
+    try {
+      final documentReference = collection.doc(userId);
+      final DocumentSnapshot doc = await documentReference.get();
+      final data = doc.data() as Map<String, dynamic>;
+      return data;
+    } catch (e) {
+      throw CouldNotGetData();
+    }
+  }
+
+  Future<void> addItemToUserData(String key, dynamic vlaue) async {
+    createWatchlist();
+    Map<String, dynamic> data = await getDocumentData();
+    List<dynamic> tickerList = data[key];
+    if (await isValueExist(data, key, vlaue) == false) {
+      tickerList.add(vlaue);
+      final documentReference = collection.doc(userId);
+      await documentReference.update({key: tickerList});
+    } else {
+      throw WatchlistItemAlreadyExist();
+    }
+  }
+
+  Future<void> removeItemFromUserData(String key, dynamic vlaue) async {
+    Map<String, dynamic> data = await getDocumentData();
+    List<dynamic> tickerList = data[key];
+    if (await isValueExist(data, key, vlaue)) {
+      tickerList.remove(vlaue);
+      final documentReference = collection.doc(userId);
+      await documentReference.update({key: tickerList});
+    } else {
+      throw CouldNotFindWatchlistItem();
+    }
+  }
+
+  Future<bool> isValueExist(
+      Map<String, dynamic> data, String key, dynamic vlaue) async {
+    List<dynamic> tickerList = data[key];
+    if (tickerList.contains(vlaue)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

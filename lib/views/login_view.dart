@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
@@ -79,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
                   );
                   final user = AuthService.firebase().currentUser;
                   if (user?.isEmailVerified ?? false) {
-                    final watchlistDb = WatchlistDb();
+                    final watchlistDb = CloudDb();
                     watchlistDb.createWatchlist();
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       homeRoute,
@@ -138,10 +138,7 @@ class _LoginViewState extends State<LoginView> {
             future: AuthService.firebase().initialize(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                showErrorDialog(
-                  context,
-                  'Error initializing Firebase',
-                );
+                asyncShowErrorDialog(context ,'Error initializing Firebase');
               } else if (snapshot.connectionState == ConnectionState.done) {
                 return const GoogleSignInButton();
               }

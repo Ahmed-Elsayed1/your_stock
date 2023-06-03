@@ -31,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () async {
                     AppCubit.get(context);
-                    final db = WatchlistDb();
+                    final db = CloudDb();
                     final authProvider = FirebaseAuthProvider();
                     try {
                       db.deleteWatchlist();

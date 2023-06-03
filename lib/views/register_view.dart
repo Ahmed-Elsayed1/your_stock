@@ -98,27 +98,27 @@ class _RegisterViewState extends State<RegisterView> {
                     verifyRoute,
                   );
                 } on WeakPasswordAuthException {
-                  showErrorDialog(
+                  await showErrorDialog(
                     context,
                     'Weak password.',
                   );
                 } on EmailAlreadyInUseAuthException {
-                  showErrorDialog(
+                  await showErrorDialog(
                     context,
                     'Email already in use.',
                   );
                 } on InvalidEmailAuthException {
-                  showErrorDialog(
+                  await showErrorDialog(
                     context,
                     'Invalid email.',
                   );
                 } on GenericAuthException {
-                  showErrorDialog(
+                  await showErrorDialog(
                     context,
                     'Faild to signup',
                   );
                 } on DifferentConfirmPassword {
-                  showErrorDialog(
+                  await showErrorDialog(
                     context,
                     'Password and Confirm Password are different',
                   );

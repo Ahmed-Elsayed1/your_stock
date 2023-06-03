@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Future<void> showErrorDialog(
-  context,
+  BuildContext context,
   String text,
 ) {
   return showDialog(
@@ -20,5 +20,13 @@ Future<void> showErrorDialog(
         ],
       );
     },
+  );
+}
+
+Future<void> asyncShowErrorDialog(
+    BuildContext context, String errorText) async {
+  await showErrorDialog(
+    context,
+    errorText,
   );
 }

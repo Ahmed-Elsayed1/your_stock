@@ -31,7 +31,7 @@ class FirebaseAuthProvider implements AuthProvider {
         );
         final user = currentUser;
         if (user != null) {
-          final watchlistDb = WatchlistDb();
+          final watchlistDb = CloudDb();
           watchlistDb.createWatchlist();
           return user;
         } else {
@@ -77,7 +77,7 @@ class FirebaseAuthProvider implements AuthProvider {
       );
       final user = currentUser;
       if (user != null) {
-        final watchlistDb = WatchlistDb();
+        final watchlistDb = CloudDb();
         watchlistDb.createWatchlist();
         return user;
       } else {
@@ -101,7 +101,7 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   Future<void> logOut() async {
     final user = FirebaseAuth.instance.currentUser;
-    if (googleSignIn != null) {
+    if (await googleSignIn.isSignedIn()) {
       await googleSignIn.disconnect();
     }
     if (user != null) {
@@ -159,7 +159,7 @@ class FirebaseAuthProvider implements AuthProvider {
   Future<void> deleteUser() async {
     try {
       await FirebaseAuth.instance.currentUser!.delete();
-      if (googleSignIn != null) {
+      if (await googleSignIn.isSignedIn()) {
         await googleSignIn.disconnect();
       }
     } on FirebaseAuthException catch (e) {

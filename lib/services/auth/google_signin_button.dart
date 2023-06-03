@@ -8,10 +8,10 @@ class GoogleSignInButton extends StatefulWidget {
   const GoogleSignInButton({super.key});
 
   @override
-  _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
+  GoogleSignInButtonState createState() => GoogleSignInButtonState();
 }
 
-class _GoogleSignInButtonState extends State<GoogleSignInButton> {
+class GoogleSignInButtonState extends State<GoogleSignInButton> {
   bool _isSigningIn = false;
 
   @override
@@ -43,7 +43,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 });
 
                 if (user != null) {
-                  final watchlistDb = WatchlistDb();
+                  final watchlistDb = CloudDb();
                   watchlistDb.createWatchlist();
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     homeRoute,
