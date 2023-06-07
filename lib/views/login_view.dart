@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
@@ -134,21 +135,22 @@ class _LoginViewState extends State<LoginView> {
                     foregroundColor: Colors.black),
                 child: const Text("Don't have an account yet? signup here. ")),
           ),
-          FutureBuilder(
-            future: AuthService.firebase().initialize(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                asyncShowErrorDialog(context ,'Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return const GoogleSignInButton();
-              }
-              return const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  Colors.orange,
-                ),
-              );
-            },
-          ),
+          if (!kIsWeb)
+            FutureBuilder(
+              future: AuthService.firebase().initialize(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  asyncShowErrorDialog(context ,'Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return const GoogleSignInButton();
+                }
+                return const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.orange,
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

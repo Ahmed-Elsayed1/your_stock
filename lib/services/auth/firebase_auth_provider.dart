@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourstock/firebase_options.dart';
 import 'package:yourstock/services/auth/auth_user.dart';
@@ -15,7 +16,14 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignIn? initializeGoogleSignin() {
+    if (!kIsWeb) {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      return googleSignIn;
+    } else {
+      return null;
+    }
+  }
 
   @override
   Future<AuthUser> createUser({
@@ -101,8 +109,11 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   Future<void> logOut() async {
     final user = FirebaseAuth.instance.currentUser;
-    if (await googleSignIn.isSignedIn()) {
-      await googleSignIn.disconnect();
+    GoogleSignIn? googleSignIn = initializeGoogleSignin();
+    if (googleSignIn != null) {
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.disconnect();
+      }
     }
     if (user != null) {
       await FirebaseAuth.instance.signOut();
@@ -123,44 +134,51 @@ class FirebaseAuthProvider implements AuthProvider {
 
   @override
   Future<User?> signInWithGoogle() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
+    GoogleSignIn? googleSignIn = initializeGoogleSignin();
+    if (!kIsWeb) {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? user;
 
-    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      GoogleSignInAccount? googleSignInAccount = await googleSignIn!.signIn();
 
-    if (googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
 
-      try {
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
+        try {
+          final UserCredential userCredential =
+              await auth.signInWithCredential(credential);
 
-        user = userCredential.user;
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'account-exists-with-different-credential') {
-          throw AccountExistsWithDifferentCredentialAuthException();
-        } else if (e.code == 'invalid-credential') {
-          throw InvalidCredentialAuthException();
+          user = userCredential.user;
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'account-exists-with-different-credential') {
+            throw AccountExistsWithDifferentCredentialAuthException();
+          } else if (e.code == 'invalid-credential') {
+            throw InvalidCredentialAuthException();
+          }
+        } catch (e) {
+          throw GenericAuthException();
         }
-      } catch (e) {
-        throw GenericAuthException();
       }
-    }
 
-    return user;
+      return user;
+    }
+    return null;
   }
 
   Future<void> deleteUser() async {
     try {
       await FirebaseAuth.instance.currentUser!.delete();
-      if (await googleSignIn.isSignedIn()) {
-        await googleSignIn.disconnect();
+      if (!kIsWeb) {
+        GoogleSignIn? googleSignIn = initializeGoogleSignin();
+        if (await googleSignIn!.isSignedIn()) {
+          await googleSignIn.disconnect();
+        }
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "requires-recent-login") {

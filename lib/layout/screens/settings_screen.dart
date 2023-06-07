@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
@@ -26,6 +27,7 @@ class SettingsScreen extends StatelessWidget {
                   )),
               // Empty container to occupy the remaining space
             ),
+            // if (!kIsWeb)
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
