@@ -1,78 +1,85 @@
+import 'package:yourstock/layout/screens/chart_screen.dart';
+import 'package:yourstock/shared/app_cubit/search_cubit/search_cubit.dart';
+import 'package:yourstock/shared/app_cubit/search_cubit/search_state.dart';
 import 'package:yourstock/shared/componentes/components.dart';
-import 'package:yourstock/shared/cubit/cubit.dart';
-import 'package:yourstock/shared/cubit/states.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchSecreen extends StatefulWidget {
-  const SearchSecreen({super.key});
+class SearchScreen extends StatelessWidget {
+  final SearchCubit searchCubit = SearchCubit();
 
-  @override
-  State<SearchSecreen> createState() => _SearchSecreenState();
-}
-
-class _SearchSecreenState extends State<SearchSecreen> {
-  Dio dio = Dio();
-
-  var searchController = TextEditingController();
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: BlocConsumer<AppCubit, AppStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var cubit = AppCubit.get(context);
-            return Column(
+    return BlocBuilder<SearchCubit, SearchState>(
+      bloc: searchCubit,
+      builder: (BuildContext context, SearchState state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text(""),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+            child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: defaultFormField(
-                    controller: searchController,
-                    type: TextInputType.text,
-                    onChange: (value) {},
-                    lable: 'Search',
-                    validate: (String value) {
-                      if (value.isEmpty) {
-                        return 'Search must not be empty';
-                      }
-                      return null;
-                    },
-                    prefix: Icons.search,
-                    underLineText: 'Search must not be empty',
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: "Search",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    prefixIcon: const Icon(Icons.search),
                   ),
+                  onChanged: (value) {
+                    searchCubit.setSearchQuery(value.isNotEmpty ? value : "Couldn't find what you are searching for");
+                  },
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      cubit.searchData(symbol: searchController.text);
-                    },
-                    child: const Icon(Icons.search)),
+                const SizedBox(height: 8),
                 Expanded(
-                  child: state is SearchState
-                      ? ListView.builder(
-                          itemCount:
-                              state.searchSymbol?.bestMatches?.length ?? 0,
-                          itemBuilder: (BuildContext context, int index) {
-                            var bestMatch =
-                                state.searchSymbol!.bestMatches![index];
-                            return ListTile(
-                              title: Text(bestMatch.name ?? "No Name"),
-                              subtitle: Text(bestMatch.symbol ?? "No Symbol"),
-                              trailing: Text(bestMatch.region ?? "No Region"),
-                            );
-                          },
-                        )
-                      : const Center(child: Text('Waiting for you..')),
+                  child: _buildSearchResults(state),
                 ),
               ],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  Widget _buildSearchResults(SearchState state) {
+    if (state is SearchLoading) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (state is SearchLoaded) {
+      return ListView.builder(
+        itemCount: state.searchSymbol.bestMatches?.length ?? 0,
+        itemBuilder: (BuildContext context, int index) {
+          var match = state.searchSymbol.bestMatches![index];
+          if (match.region == "United States") {
+            return MaterialButton(
+              onPressed: () {
+                navigateTo(context, ChartScreen(symbol: '${match.symbol}'));
+              },
+              child: ListTile(
+                title: Text(
+                  match.name ?? "No Name",
+                ),
+                subtitle: Text(
+                  match.symbol ?? "No Symbol",
+                ),
+                trailing: Text(
+                  match.region ?? "No Region",
+                ),
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

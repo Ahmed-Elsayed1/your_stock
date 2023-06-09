@@ -59,11 +59,9 @@ Widget defaultFormField({
     return null;
   },
   onFieldSubmitted: (String value){
-    //log(value);
     onSubmit!(value);
   },
   onChanged: (String value){
-    //log(value);
     onChange!(value);
   },
   decoration: InputDecoration(

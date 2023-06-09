@@ -58,7 +58,7 @@ class GoogleSignInButtonState extends State<GoogleSignInButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("assets/google_logo.png"),
+                      image: AssetImage("assets/images/logos/google_logo.png"),
                       height: 20.0,
                     ),
                     Padding(

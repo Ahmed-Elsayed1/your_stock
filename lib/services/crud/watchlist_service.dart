@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:yourstock/services/crud/crud_exception.dart';
 import 'package:sqflite/sqflite.dart';
@@ -212,7 +211,6 @@ class WatchlistService {
     try {
       final docsPath = await getApplicationDocumentsDirectory();
       final dbPath = join(docsPath.path, dbWatchlist);
-      log(dbPath);
       final db = await openDatabase(dbPath);
       _db = db;
 

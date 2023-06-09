@@ -20,48 +20,69 @@ class SettingsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: Text(currentUser!.email.toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  )),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Text(currentUser!.email.toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
               // Empty container to occupy the remaining space
             ),
             Align(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                  onPressed: () async {
-                    AppCubit.get(context);
-                    final db = CloudDb();
-                    final authProvider = FirebaseAuthProvider();
-                    try {
-                      db.deleteWatchlist();
-                      authProvider.deleteUser();
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        loginRoute,
-                        (_) => false,
-                      );
-                    } on RequiresRecentLogin {
-                      await showErrorDialog(
-                        context,
-                        'Requires Recent Login, Try to re-login and try again.',
-                      );
-                      await authProvider.logOut();
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        loginRoute,
-                        (_) => false,
-                      );
-                    } catch (e) {
-                      if (e is GenericAuthException) {
-                        await showErrorDialog(
-                          context,
-                          'Authentication error',
-                        );
-                      }
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text("Delete this account")),
-            ),
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () async {
+                          AppCubit.get(context);
+                          final db = CloudDb();
+                          final authProvider = FirebaseAuthProvider();
+                          try {
+                            db.deleteWatchlist();
+                            authProvider.deleteUser();
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              loginRoute,
+                              (_) => false,
+                            );
+                          } on RequiresRecentLogin {
+                            await showErrorDialog(
+                              context,
+                              'Requires Recent Login, Try to re-login and try again.',
+                            );
+                            await authProvider.logOut();
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              loginRoute,
+                              (_) => false,
+                            );
+                          } catch (e) {
+                            if (e is GenericAuthException) {
+                              await showErrorDialog(
+                                context,
+                                'Authentication error',
+                              );
+                            }
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red),
+                        child: const Text("Delete this account")),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseAuthProvider().logOut();
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            loginRoute,
+                            (_) => false,
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey),
+                        child: const Text("Logout")),
+                  ],
+                )),
             Expanded(
               child:
                   Container(), // Empty container to occupy the remaining space

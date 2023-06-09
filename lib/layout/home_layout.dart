@@ -1,8 +1,3 @@
-import 'package:yourstock/constants/routes.dart';
-import 'package:yourstock/enums/menu_action.dart';
-import 'package:yourstock/layout/screens/search_screen.dart';
-import 'package:yourstock/services/auth/auth_service.dart';
-import 'package:yourstock/shared/componentes/components.dart';
 import 'package:yourstock/shared/cubit/cubit.dart';
 import 'package:yourstock/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -21,40 +16,6 @@ class HomeLayout extends StatelessWidget {
           var cubit = AppCubit.get(context);
 
           return Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                'Assets',
-              ),
-              centerTitle: true,
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    navigateTo(context, const SearchSecreen());
-                  },
-                ),
-                PopupMenuButton<MenuAction>(onSelected: (value) async {
-                  switch (value) {
-                    case MenuAction.logout:
-                      final shouldLogout = await showLogoutDialog(context);
-                      if (shouldLogout) {
-                        await AuthService.firebase().logOut();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          loginRoute,
-                          (_) => false,
-                        );
-                      }
-                  }
-                }, itemBuilder: (context) {
-                  return [
-                    const PopupMenuItem<MenuAction>(
-                      value: MenuAction.logout,
-                      child: Text('Logout'),
-                    ),
-                  ];
-                })
-              ],
-            ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,

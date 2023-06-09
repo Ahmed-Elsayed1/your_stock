@@ -1,9 +1,7 @@
-import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yourstock/layout/screens/news_screen.dart';
 import 'package:yourstock/layout/screens/settings_screen.dart';
-import 'package:yourstock/models/search_model.dart';
 import 'package:yourstock/shared/cubit/states.dart';
 import 'package:yourstock/layout/screens/stocks_screen.dart';
 import 'package:yourstock/layout/screens/watchlist_screen.dart';
@@ -25,16 +23,16 @@ class AppCubit extends Cubit<AppStates> {
     ),
     const BottomNavigationBarItem(
       icon: Icon(
-        Icons.favorite,
+        Icons.favorite_border_outlined,
       ),
       label: 'Watchlist',
     ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(
-    //     Icons.science,
-    //   ),
-    //   label: 'Science',
-    // ),
+    const BottomNavigationBarItem(
+      icon: Icon(
+        Icons.newspaper_rounded,
+      ),
+      label: 'News',
+    ),
     const BottomNavigationBarItem(
       icon: Icon(
         Icons.settings,
@@ -44,8 +42,9 @@ class AppCubit extends Cubit<AppStates> {
   ];
 
   List<Widget> screens = [
-    const StocksScreen(),
+    StocksScreen(),
     const WatchlistScreen(),
+    NewsScreen(),
     const SettingsScreen(),
     // ScienceScreen(),
   ];
@@ -53,19 +52,5 @@ class AppCubit extends Cubit<AppStates> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(AppBottomNavState());
-  }
-
-  Dio dio = Dio();
-  void searchData({String? symbol}) async {
-    String url =
-        "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=$symbol&apikey=0G0BN7WU6YYWLWMI";
-    try {
-      Response response = await dio.get(url);
-      SearchSymbol searchSymbol = SearchSymbol.fromMap(response.data);
-      emit(SearchState(searchSymbol: searchSymbol));
-    } catch (e) {
-      log('ERROR: $e');
-      emit(StocksGetStocksErrorState(e.toString()));
-    }
   }
 }

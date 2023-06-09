@@ -34,6 +34,7 @@ class CloudDb {
 
   Future<Map<String, dynamic>> getDocumentData() async {
     try {
+      await createWatchlist();
       final documentReference = collection.doc(userId);
       final DocumentSnapshot doc = await documentReference.get();
       final data = doc.data() as Map<String, dynamic>;
@@ -44,10 +45,10 @@ class CloudDb {
   }
 
   Future<void> addItemToUserData(String key, dynamic vlaue) async {
-    createWatchlist();
+    await createWatchlist();
     Map<String, dynamic> data = await getDocumentData();
     List<dynamic> tickerList = data[key];
-    if (await isValueExist(data, key, vlaue) == false) {
+    if (await isValueExist(key, vlaue) == false) {
       tickerList.add(vlaue);
       final documentReference = collection.doc(userId);
       await documentReference.update({key: tickerList});
@@ -59,7 +60,7 @@ class CloudDb {
   Future<void> removeItemFromUserData(String key, dynamic vlaue) async {
     Map<String, dynamic> data = await getDocumentData();
     List<dynamic> tickerList = data[key];
-    if (await isValueExist(data, key, vlaue)) {
+    if (await isValueExist(key, vlaue)) {
       tickerList.remove(vlaue);
       final documentReference = collection.doc(userId);
       await documentReference.update({key: tickerList});
@@ -68,8 +69,8 @@ class CloudDb {
     }
   }
 
-  Future<bool> isValueExist(
-      Map<String, dynamic> data, String key, dynamic vlaue) async {
+  Future<bool> isValueExist(String key, dynamic vlaue) async {
+    final data = await getDocumentData();
     List<dynamic> tickerList = data[key];
     if (tickerList.contains(vlaue)) {
       return true;
