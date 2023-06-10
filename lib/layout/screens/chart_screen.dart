@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -387,9 +388,17 @@ class _ChartScreenState extends State<ChartScreen> {
 
 Future<String> executeCloudFunction(String variable) async {
   const url =
-      'http://127.0.0.1:5001/your-stock-project/us-central1/executePythonScript';
-  final response =
-      await http.post(Uri.parse(url), body: {'variable': variable});
+      'https://us-central1-your-stock-project.cloudfunctions.net/executeScript';
+
+  Map<String, dynamic> requestBody = {
+    'variable': variable,
+  };
+
+  final response = await http.post(
+    Uri.parse(url),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode(requestBody),
+  );
 
   if (response.statusCode == 200) {
     return response.body; // Assuming the response contains the script result
@@ -403,12 +412,16 @@ Future<String> fetchModelData(String variable) async {
     String prediction;
     String result = await executeCloudFunction(variable);
     // Handle the result here
-    log('Result: $result');
-    if (result == '0') {
+
+    dynamic jsonResult = jsonDecode(result);
+    int predictionValue = jsonResult['result'];
+
+    if (predictionValue == 0) {
       prediction = 'Will fall!';
     } else {
       prediction = 'Will raise!';
     }
+    // log('Prediction: $prediction');
     return prediction;
   } catch (error) {
     // Handle any errors that occur during the HTTP request

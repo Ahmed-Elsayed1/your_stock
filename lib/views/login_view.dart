@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
@@ -114,14 +113,26 @@ class _LoginViewState extends State<LoginView> {
                   );
                 }
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 13),
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+                alignment: Alignment.center,
+                backgroundColor: Colors.deepOrange.withOpacity(0.7),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child: const Text(
                 "Login",
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 20),
+            padding: const EdgeInsets.only(top: 5, bottom: 20),
             child: ElevatedButton(
                 onPressed: (() {
                   //go to registration view.
@@ -140,7 +151,7 @@ class _LoginViewState extends State<LoginView> {
               future: AuthService.firebase().initialize(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  asyncShowErrorDialog(context ,'Error initializing Firebase');
+                  asyncShowErrorDialog(context, 'Error initializing Firebase');
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   return const GoogleSignInButton();
                 }

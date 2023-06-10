@@ -124,12 +124,24 @@ class _RegisterViewState extends State<RegisterView> {
                   );
                 }
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 13),
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+                alignment: Alignment.center,
+                backgroundColor: Colors.deepOrange.withOpacity(0.7),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child: const Text("Signup"),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
