@@ -17,7 +17,7 @@ class AppCubit extends Cubit<AppStates> {
   List<BottomNavigationBarItem> bottomItems = [
     const BottomNavigationBarItem(
       icon: Icon(
-        Icons.web_asset,
+        Icons.bar_chart_rounded,
       ),
       label: 'Stocks',
     ),

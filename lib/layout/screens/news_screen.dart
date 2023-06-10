@@ -62,7 +62,7 @@ class NewsScreen extends StatelessWidget {
 
   Widget buildNewsList(List<News> allNews) {
     return ListView.builder(
-      //shrinkWrap: true,
+      shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.zero,
       itemCount: allNews.length,

@@ -130,24 +130,6 @@ class _ChartScreenState extends State<ChartScreen> {
                           children: [
                             ElevatedButton(
                               onPressed: () async {
-                                // await savePythonScript();
-                                // Directory appDocDirectory =
-                                //     await getApplicationDocumentsDirectory();
-                                // String modelPath =
-                                //     '${appDocDirectory.path}/main.py';
-                                // String inputFile = await writeTicker();
-                                // String outputFile = await createOutputFile();
-                                // final initializeFlython = InitializeFlython();
-                                // if (File(modelPath).existsSync()) {
-                                //   await initializeFlython.initialize(
-                                //       "python", modelPath, false);
-                                //   await initializeFlython.predictStock(
-                                //       inputFile, outputFile);
-                                //   initializeFlython.finalize();
-                                // } else {
-                                //   log('file does not exist');
-                                // }
-
                                 String prediction =
                                     await fetchModelData(widget.symbol);
                                 setState(() {
