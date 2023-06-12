@@ -46,7 +46,6 @@ class AppCubit extends Cubit<AppStates> {
     const WatchlistScreen(),
     NewsScreen(),
     const SettingsScreen(),
-    // ScienceScreen(),
   ];
 
   void changeBottomNavBar(int index) {

@@ -100,7 +100,6 @@ class StocksScreen extends StatelessWidget {
                       stockss[index].key,
                       style: const TextStyle(
                         fontWeight: FontWeight.w100,
-                        //color: Colors.black,
                       ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,

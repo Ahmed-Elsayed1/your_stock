@@ -33,7 +33,9 @@ class SearchScreen extends StatelessWidget {
                     prefixIcon: const Icon(Icons.search),
                   ),
                   onChanged: (value) {
-                    searchCubit.setSearchQuery(value.isNotEmpty ? value : "Couldn't find what you are searching for");
+                    searchCubit.setSearchQuery(value.isNotEmpty
+                        ? value
+                        : "Couldn't find what you are searching for");
                   },
                 ),
                 const SizedBox(height: 8),
@@ -59,7 +61,10 @@ class SearchScreen extends StatelessWidget {
           if (match.region == "United States") {
             return MaterialButton(
               onPressed: () {
-                navigateTo(context, ChartScreen(symbol: '${match.symbol}'));
+                navigateTo(
+                    context,
+                    ChartScreen(
+                        symbol: '${match.symbol}'));
               },
               child: ListTile(
                 title: Text(

@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_service.dart';

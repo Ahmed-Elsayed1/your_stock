@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yourstock/layout/screens/chart_screen.dart';
 import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 import 'package:yourstock/services/crud/crud_exception.dart';
+import 'package:yourstock/shared/componentes/components.dart';
 import 'package:yourstock/utilities/show_error_dialog.dart';
 
 class WatchlistScreen extends StatefulWidget {
@@ -22,6 +24,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Watchlist',
+          ),
+          centerTitle: true,
+        ),
         body: FutureBuilder(
             future: cloudDb.getDocumentData(),
             builder: (context, snapshot) {
@@ -34,10 +42,44 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       itemCount: data["ticker"].length,
                       itemBuilder: (BuildContext context, int index) {
                         final ticker = tickers[index];
-                        return ListTile(
-                          title: Text(ticker ?? 'No Name'),
-                          // subtitle: Text(match?.symbol ?? 'No Symbol'),
-                          // trailing: Text(match?.region ?? 'No Region'),
+                        return MaterialButton(
+                          onPressed: () {
+                            navigateTo(context, ChartScreen(symbol: '$ticker'));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 35,
+                                  height: 35,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/logos/$ticker.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 0.2,
+                                ),
+                                Expanded(
+                                  child: ListTile(
+                                    title: Text(
+                                      ticker,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      maxLines: 4,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         );
                       },
                     );

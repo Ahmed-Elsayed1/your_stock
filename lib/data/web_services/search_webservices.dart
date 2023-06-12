@@ -14,8 +14,7 @@ class SearchWebServices {
   Future<List<dynamic>> getData({String? symbol}) async {
     try {
       Response response = await dio.get(
-          'query?function=SYMBOL_SEARCH&keywords=$symbol&apikey=0G0BN7WU6YYWLWMI');
-      //print(response.data['bestMatches'].toString());
+          'query?function=SYMBOL_SEARCH&keywords=$symbol&apikey=EA1CT9M28NTKEHPS');
       return response.data['bestMatches'];
     } catch (e) {
       return [];

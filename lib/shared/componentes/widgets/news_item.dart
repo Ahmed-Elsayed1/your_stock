@@ -49,7 +49,6 @@ class NewsItem extends StatelessWidget {
                     '${news.summary}',
                     style: const TextStyle(
                       fontWeight: FontWeight.w100,
-                      //color: Colors.black,
                     ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,

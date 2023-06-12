@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourstock/constants/routes.dart';
 import 'package:yourstock/services/auth/auth_exeptions.dart';
+import 'package:yourstock/services/auth/auth_service.dart';
 import 'package:yourstock/services/auth/firebase_auth_provider.dart';
 import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 import 'package:yourstock/shared/cubit/cubit.dart';
@@ -72,11 +73,14 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                         onPressed: () async {
-                          await FirebaseAuthProvider().logOut();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            loginRoute,
-                            (_) => false,
-                          );
+                          final shouldLogout = await showLogoutDialog(context);
+                          if (shouldLogout) {
+                            await AuthService.firebase().logOut();
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              loginRoute,
+                              (_) => false,
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.grey),
@@ -90,4 +94,30 @@ class SettingsScreen extends StatelessWidget {
           ],
         )));
   }
+}
+
+Future<bool> showLogoutDialog(context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('log out'),
+        content: const Text('Are you sure that you want to log out?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: const Text('Cancle'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: const Text('Log out'),
+          ),
+        ],
+      );
+    },
+  ).then((value) => value ?? false);
 }

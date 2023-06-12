@@ -62,7 +62,6 @@ class NewsStockScreen extends StatelessWidget {
   }
 
   Widget buildNewsList(List<News> allNews) {
-    // try {
     return ListView.builder(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -79,8 +78,6 @@ class NewsStockScreen extends StatelessWidget {
         }
       },
     );
-    // } on RangeErrorException {
-    // }
   }
 
   Widget showErrorWidget() {

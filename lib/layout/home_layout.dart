@@ -57,27 +57,3 @@ Future<bool> showLogoutDialog(context) {
   ).then((value) => value ?? false);
 }
 
-
-
-
-//
-//
-// return Scaffold(
-// body: cubit.screens[cubit.currentIndex],
-// bottomNavigationBar: BottomNavigationBar(
-// currentIndex: cubit.currentIndex,
-// onTap: (index){
-// cubit.changeBottomNavBar(index);
-// },
-// items: cubit.bottomItems,
-// ),
-// floatingActionButton: FloatingActionButton(
-// onPressed: (){
-// DioHelper.get(
-// url: 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=1min&apikey=0G0BN7WU6YYWLWMI'
-// ).then((value) {
-// log(value.toString());
-// });
-// },
-// ),
-// );

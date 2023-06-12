@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:yourstock/layout/screens/splash_screen.dart';
 import 'package:yourstock/shared/bloc_observer.dart';
 import 'package:yourstock/shared/network/dio_helper.dart';
 import 'firebase_options.dart';
@@ -126,12 +127,12 @@ class HomePage extends StatelessWidget {
             final user = AuthService.firebase().currentUser;
             if (user != null) {
               if (user.isEmailVerified) {
-                return const HomeLayout();
+                return const SplashScreen(view: HomeLayout());
               } else {
-                return const VerifyEmailView();
+                return const SplashScreen(view: VerifyEmailView());
               }
             } else {
-              return const LoginView();
+              return const SplashScreen(view: LoginView());
             }
           default:
             return const Scaffold(

@@ -14,8 +14,7 @@ class NewsWebServices {
   Future<List<dynamic>> getAllNews() async {
     try {
       Response response = await dio.get(
-          'query?function=NEWS_SENTIMENT&keywords=&language=en&apikey=0G0BN7WU6YYWLWMI');
-      //print(response.data['feed'].toString());
+          'query?function=NEWS_SENTIMENT&keywords=&language=en&apikey=ISYLTRHMSV89JIIE');
       return response.data['feed'];
     } catch (e) {
       return [];
