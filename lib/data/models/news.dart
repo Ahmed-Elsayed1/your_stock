@@ -3,13 +3,13 @@ class News {
   String? title;
   String? url;
   String? summary;
-  String? banner_image;
+  String? bannerImage;
 
 
     News.fromJson (Map<String, dynamic> json){
     title = json['title'];
     url = json['url'];
     summary = json['summary'];
-    banner_image = json['banner_image'];
+    bannerImage = json['banner_image'];
   }
 }

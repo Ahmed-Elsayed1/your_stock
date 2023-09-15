@@ -20,7 +20,8 @@ class _PredictionButton extends State<PredictionButton> {
       children: [
         ElevatedButton(
           onPressed: () async {
-            String prediction = await fetchModelData(widget.symbol);
+            String result = await fetchModelData(widget.symbol);
+            String prediction = '$result at the beginning of the week!';
             setState(() {
               predictionText = prediction;
             });
@@ -82,9 +83,9 @@ Future<String> fetchModelData(String variable) async {
     int predictionValue = jsonResult['result'];
 
     if (predictionValue == 0) {
-      prediction = 'Will fall!';
+      prediction = 'Will fall';
     } else {
-      prediction = 'Will raise!';
+      prediction = 'Will raise';
     }
     return prediction;
   } catch (error) {

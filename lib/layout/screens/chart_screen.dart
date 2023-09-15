@@ -40,7 +40,6 @@ class _ChartScreenState extends State<ChartScreen> {
             color: Colors.deepOrange.shade100,
           ),
         ),
-        // Rest of the appBar code...
       ),
       body: SingleChildScrollView(
         child: Column(

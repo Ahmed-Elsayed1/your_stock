@@ -27,7 +27,7 @@ class NewsItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: NetworkImage('${news.banner_image}'),
+                    image: NetworkImage('${news.bannerImage}'),
                     fit: BoxFit.cover,
                   ),
                 ),
