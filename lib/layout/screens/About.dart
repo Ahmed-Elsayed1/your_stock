@@ -1,13 +1,14 @@
-import 'package:yourstock/shared/app_cubit/charts_cubit/chart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../shared/app_cubit/charts_cubit/chart_cubit.dart';
 
 
 
 class AboutScreen extends StatelessWidget {
   final String symbol;
 
-  const AboutScreen({Key? key, required this.symbol}) : super(key: key);
+  const AboutScreen({super.key, required this.symbol});
 
   @override
   Widget build(BuildContext context) {

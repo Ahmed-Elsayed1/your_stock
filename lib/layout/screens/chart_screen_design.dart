@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class ChartScreenDesign extends StatelessWidget {
   final String symbol;
 
-  const ChartScreenDesign({Key? key, required this.symbol}) : super(key: key);
+  const ChartScreenDesign({super.key, required this.symbol});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class ChartScreenDesign extends StatelessWidget {
                   ),
                   primaryYAxis:
                       NumericAxis(numberFormat: NumberFormat.simpleCurrency()),
-                  series: <ChartSeries<DataPoint, DateTime>>[
+                  series: <CartesianSeries<DataPoint, DateTime>>[
                     CandleSeries<DataPoint, DateTime>(
-                      name: '${symbol}',
+                      name: symbol,
                       dataSource: chartData,
                       xValueMapper: (DataPoint point, _) => point.xValue,
                       lowValueMapper: (DataPoint point, _) => point.low,

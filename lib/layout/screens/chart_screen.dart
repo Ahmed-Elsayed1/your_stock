@@ -1,4 +1,4 @@
-import 'package:yourstock/layout/screens/About.dart';
+import 'package:yourstock/layout/screens/about.dart';
 import 'package:yourstock/layout/screens/chart_screen_design.dart';
 import 'package:yourstock/layout/screens/monthly.dart';
 import 'package:yourstock/layout/screens/news_stock_screen.dart';
@@ -10,7 +10,7 @@ import 'package:yourstock/models/watchlist.dart';
 class ChartScreen extends StatefulWidget {
   final String symbol;
 
-  const ChartScreen({Key? key, required this.symbol}) : super(key: key);
+  const ChartScreen({super.key, required this.symbol});
 
   @override
   State<ChartScreen> createState() => _ChartScreenState();
@@ -49,7 +49,7 @@ class _ChartScreenState extends State<ChartScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: Column(
                       children: [
@@ -67,29 +67,25 @@ class _ChartScreenState extends State<ChartScreen> {
                   fun(),
                   Padding(
                     padding: EdgeInsets.zero,
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  buildButton('60S', 0),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  buildButton('1W', 1),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  buildButton('1M', 2),
-                                ],
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              buildButton('60S', 0),
+                              const SizedBox(
+                                width: 2,
                               ),
-                            ),
+                              buildButton('1W', 1),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              buildButton('1M', 2),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

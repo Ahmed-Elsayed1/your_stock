@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   final Widget view;
-  const SplashScreen({Key? key, required this.view}) : super(key: key);
+  const SplashScreen({super.key, required this.view});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

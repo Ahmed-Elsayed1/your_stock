@@ -12,7 +12,7 @@ class NewsStockScreen extends StatelessWidget {
       NewsStockRepository(NewsStockWebServices());
   final String symbol;
 
-  NewsStockScreen({Key? key, required this.symbol}) : super(key: key);
+  NewsStockScreen({super.key, required this.symbol});
 
   @override
   Widget build(BuildContext context) {

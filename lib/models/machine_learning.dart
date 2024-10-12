@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class PredictionButton extends StatefulWidget {
   final String symbol;
 
-  const PredictionButton({Key? key, required this.symbol}) : super(key: key);
+  const PredictionButton({super.key, required this.symbol});
   @override
   State<StatefulWidget> createState() => _PredictionButton();
 }

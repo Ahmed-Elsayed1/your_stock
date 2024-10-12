@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 class NewsItem extends StatelessWidget {
   final News news;
 
-  const NewsItem({Key? key, required this.news}) : super(key: key);
+  const NewsItem({super.key, required this.news});
 
   @override
   Widget build(BuildContext context) {

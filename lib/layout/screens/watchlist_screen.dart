@@ -6,7 +6,7 @@ import 'package:yourstock/shared/componentes/components.dart';
 import 'package:yourstock/utilities/show_error_dialog.dart';
 
 class WatchlistScreen extends StatefulWidget {
-  const WatchlistScreen({Key? key}) : super(key: key);
+  const WatchlistScreen({super.key});
 
   @override
   State<WatchlistScreen> createState() => _WatchlistScreenState();

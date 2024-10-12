@@ -8,7 +8,7 @@ import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 import 'package:yourstock/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
 
   @override
   State<LoginView> createState() => _LoginViewState();

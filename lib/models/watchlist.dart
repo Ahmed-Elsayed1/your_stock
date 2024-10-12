@@ -4,7 +4,7 @@ import 'package:yourstock/services/crud/cloud_firestore_service.dart';
 class WatchlistButton extends StatefulWidget {
   final String symbol;
 
-  const WatchlistButton({Key? key, required this.symbol}) : super(key: key);
+  const WatchlistButton({super.key, required this.symbol});
   @override
   State<StatefulWidget> createState() => _WatchlistButton();
 }
