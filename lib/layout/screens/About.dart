@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/app_cubit/charts_cubit/chart_cubit.dart';
 
-
-
 class AboutScreen extends StatelessWidget {
   final String symbol;
 
@@ -12,7 +10,7 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (context) => StocksCubit(symbol)..getDescriptionData(),
       child: BlocBuilder<StocksCubit, StocksState>(
         builder: (context, state) {

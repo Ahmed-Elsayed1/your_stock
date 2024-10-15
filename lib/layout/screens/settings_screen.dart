@@ -47,11 +47,13 @@ class SettingsScreen extends StatelessWidget {
                               (_) => false,
                             );
                           } on RequiresRecentLogin {
+                            if(!context.mounted) return;
                             await showErrorDialog(
                               context,
                               'Requires Recent Login, Try to re-login and try again.',
                             );
                             await authProvider.logOut();
+                            if(!context.mounted) return;
                             Navigator.of(context).pushNamedAndRemoveUntil(
                               loginRoute,
                               (_) => false,
@@ -76,6 +78,7 @@ class SettingsScreen extends StatelessWidget {
                           final shouldLogout = await showLogoutDialog(context);
                           if (shouldLogout) {
                             await AuthService.firebase().logOut();
+                            if(!context.mounted) return;
                             Navigator.of(context).pushNamedAndRemoveUntil(
                               loginRoute,
                               (_) => false,

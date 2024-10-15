@@ -81,11 +81,13 @@ class _LoginViewState extends State<LoginView> {
                   if (user?.isEmailVerified ?? false) {
                     final watchlistDb = CloudDb();
                     watchlistDb.createWatchlist();
+                    if (!context.mounted) return;
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       homeRoute,
                       (route) => false,
                     );
                   } else {
+                    if (!context.mounted) return;
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       verifyRoute,
                       (route) => false,
