@@ -1,0 +1,46 @@
+name: melos_workspace_config
+
+packages:
+    - ./your_stock
+    - ./packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: false
+    runPubGetInParallel: true
+  version:
+    # Only allow versioning to happen on main branch.
+    branch: develop
+    # Additionally build a changelog at the root of the workspace.
+    workspaceChangelog: true
+
+scripts:
+  get: melos exec -c 1 -- flutter pub get
+
+  
+  analyze:
+    run: melos exec -- "flutter analyze"
+    description: Run `flutter analyze` in all packages
+
+  format:
+    run: melos exec -- "flutter format . --set-exit-if-changed"
+    description: Run `flutter format .` in all packages
+
+  generate:
+    run: melos exec -c 1 --depends-on="build_runner" --flutter -- "flutter pub run build_runner build --delete-conflicting-outputs"
+    description: Build all generated files for Flutter packages in this project.
+
+  clean:
+    run: melos exec -c 1 -- "flutter clean"
+    description: Run `flutter clean` in all packages
+
+  test:
+    run: melos exec -c 1 -- "flutter test"
+    description: Run `flutter test` in all packages
+
+  rmlock:
+    run: melos exec -c 1 -- "rm -f pubspec.lock"
+    description: Run `rm -f pubspec.lock` in all packages
+
+
+  
