@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   final user = AuthService.firebase().currentUser;
                   if (user?.isEmailVerified ?? false) {
                     final watchlistDb = CloudDb();
-                    watchlistDb.createWatchlist();
+                    watchlistDb.createWatchList();
                     if (!context.mounted) return;
                     context.router.popAndPush(const HomeRoute());
                   } else {

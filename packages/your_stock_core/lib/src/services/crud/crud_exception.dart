@@ -16,10 +16,10 @@ class CouldNotFindUser implements Exception {}
 
 class CouldNotGetData implements Exception {}
 
-class CouldNotDeleteWatchlistItem implements Exception {}
+class CouldNotDeleteWatchListItem implements Exception {}
 
-class CouldNotFindWatchlistItem implements Exception {}
+class CouldNotFindWatchListItem implements Exception {}
 
-class WatchlistItemAlreadyExist implements Exception {}
+class WatchListItemAlreadyExist implements Exception {}
 
 class GenericDataException implements Exception {}

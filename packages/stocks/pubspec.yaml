@@ -1,6 +1,7 @@
 name: stocks
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -11,10 +12,35 @@ dependencies:
   flutter:
     sdk: flutter
 
+  freezed: ^2.4.3
+
+  get_it: ^8.0.2
+  injectable: ^2.5.0
+
+  syncfusion_flutter_charts: ^27.1.52
+  google_fonts: ^6.2.0
+  fl_chart: ^0.69.0
+  intl: ^0.19.0
+
+  # Packages
+  your_stock_core:
+    path: ../your_stock_core
+  common:
+    path: ../common
+  watch_list:
+    path: ../watch_list
+  news:
+    path: ../news
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  
+  auto_route_generator: any
+  build_runner: ^2.4.6
+  injectable_generator: ^2.4.1
+  json_serializable: ^6.7.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -8,5 +8,6 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:uuid/uuid.dart';
 export 'package:jiffy/jiffy.dart';
 export 'package:equatable/equatable.dart';
+export 'package:dio/dio.dart';
 
 export 'src/src.dart';

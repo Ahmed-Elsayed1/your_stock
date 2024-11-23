@@ -16,10 +16,15 @@ dependencies:
 
   get_it: ^8.0.2
   injectable: ^2.5.0
+  dio: ^5.7.0
+  rxdart: ^0.28.0
+  http: ^1.2.0
 
   # Packages
   your_stock_core:
     path: ../your_stock_core
+  stocks:
+    path: ../stocks
 
 dev_dependencies:
   flutter_test:

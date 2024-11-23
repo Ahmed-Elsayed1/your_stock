@@ -317,13 +317,13 @@ packages:
     source: hosted
     version: "2.18.1"
   fl_chart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: fl_chart
-      sha256: "94307bef3a324a0d329d3ab77b2f0c6e5ed739185ffc029ed28c0f9b019ea7ef"
+      sha256: "74959b99b92b9eebeed1a4049426fd67c4abc3c5a0f4d12e2877097d6a11ae08"
       url: "https://pub.dev"
     source: hosted
-    version: "0.69.0"
+    version: "0.69.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -396,7 +396,7 @@ packages:
     source: hosted
     version: "2.1.2"
   google_fonts:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_fonts
       sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
@@ -483,7 +483,7 @@ packages:
     source: hosted
     version: "2.5.0"
   intl:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: intl
       sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
@@ -594,6 +594,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  news:
+    dependency: transitive
+    description:
+      path: "../packages/news"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -775,6 +782,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  stocks:
+    dependency: transitive
+    description:
+      path: "../packages/stocks"
+      relative: true
+    source: path
+    version: "0.0.1"
   stream_channel:
     dependency: transitive
     description:
@@ -792,21 +806,21 @@ packages:
     source: hosted
     version: "1.2.0"
   syncfusion_flutter_charts:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: syncfusion_flutter_charts
-      sha256: df13f25d2095bf747c0c67460a06b655a6cce6d74380d9e4ef24d9a523a2e1b6
+      sha256: "219ae2f8c2cdca5653270a8a3abf4af7165f1f6e1d1db72964e9c3ee96d3c629"
       url: "https://pub.dev"
     source: hosted
-    version: "27.1.53"
+    version: "27.2.3"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: becd190595cba56feac5ec17b805b35df9f006171c131c209f79b5c58fc780eb
+      sha256: a39ddfb22b30c7cba620fec7dc682e46f151998febd25bca5519c17431084951
       url: "https://pub.dev"
     source: hosted
-    version: "27.1.53"
+    version: "27.2.3"
   synchronized:
     dependency: transitive
     description:
@@ -927,6 +941,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.5"
+  watch_list:
+    dependency: transitive
+    description:
+      path: "../packages/watch_list"
+      relative: true
+    source: path
+    version: "0.0.1"
   watcher:
     dependency: transitive
     description:

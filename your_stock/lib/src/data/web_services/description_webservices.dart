@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class DescriptionWebServices {
+class DescriptionDataSource {
   late Dio dio;
 
-  DescriptionWebServices() {
+  DescriptionDataSource() {
     BaseOptions options = BaseOptions(
       baseUrl: 'https://www.alphavantage.co/',
       receiveDataWhenStatusError: true,

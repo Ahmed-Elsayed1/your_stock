@@ -13,10 +13,10 @@ class App extends StatefulWidget {
   final AppFeaturesBuilder featuresBuilder;
 
   @override
-  State<App> createState() => _AppState();
+  State<App> createState() => _GlobalState();
 }
 
-class _AppState extends State<App> {
+class _GlobalState extends State<App> {
   @override
   Widget build(BuildContext context) {
     MaterialColor primarySwatch = const MaterialColor(

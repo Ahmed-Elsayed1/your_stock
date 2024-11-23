@@ -1,8 +1,7 @@
-import 'package:your_stock/src/shared/cubit/cubit.dart';
-import 'package:your_stock/src/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_stock_core/your_stock_core.dart';
+
+import '../cubit/cubit.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -11,11 +10,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppStates>(
+      create: (BuildContext context) => GlobalCubit(),
+      child: BlocConsumer<GlobalCubit, GlobalState>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
+          var cubit = GlobalCubit.get(context);
 
           return Scaffold(
             body: cubit.screens[cubit.currentIndex],

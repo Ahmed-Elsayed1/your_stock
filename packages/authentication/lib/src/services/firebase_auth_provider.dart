@@ -38,7 +38,7 @@ class FirebaseAuthProvider implements AuthProvider {
         final user = currentUser;
         if (user != null) {
           final watchlistDb = CloudDb();
-          watchlistDb.createWatchlist();
+          watchlistDb.createWatchList();
           return user;
         } else {
           throw UserNotLoggedInException();
@@ -86,7 +86,7 @@ class FirebaseAuthProvider implements AuthProvider {
       final user = currentUser;
       if (user != null) {
         final watchlistDb = CloudDb();
-        watchlistDb.createWatchlist();
+        watchlistDb.createWatchList();
         return user;
       } else {
         throw UserNotLoggedInException();
