@@ -24,6 +24,7 @@ mixin _$StockDetailsState {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -37,6 +38,7 @@ mixin _$StockDetailsState {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -50,6 +52,7 @@ mixin _$StockDetailsState {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -62,6 +65,7 @@ mixin _$StockDetailsState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -73,6 +77,7 @@ mixin _$StockDetailsState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -84,6 +89,7 @@ mixin _$StockDetailsState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -160,6 +166,7 @@ class _$InitialImpl implements _Initial {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -176,6 +183,7 @@ class _$InitialImpl implements _Initial {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -192,6 +200,7 @@ class _$InitialImpl implements _Initial {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -210,6 +219,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -224,6 +234,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -238,6 +249,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -301,6 +313,7 @@ class _$LoadingImpl implements _Loading {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -317,6 +330,7 @@ class _$LoadingImpl implements _Loading {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -333,6 +347,7 @@ class _$LoadingImpl implements _Loading {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -351,6 +366,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -365,6 +381,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -379,6 +396,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -507,6 +525,7 @@ class _$LoadedImpl implements _Loaded {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -523,6 +542,7 @@ class _$LoadedImpl implements _Loaded {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -539,6 +559,7 @@ class _$LoadedImpl implements _Loaded {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -557,6 +578,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -571,6 +593,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -585,6 +608,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -688,6 +712,7 @@ class _$ErrorImpl implements _Error {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -704,6 +729,7 @@ class _$ErrorImpl implements _Error {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -720,6 +746,7 @@ class _$ErrorImpl implements _Error {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -738,6 +765,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -752,6 +780,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -766,6 +795,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -787,6 +817,191 @@ abstract class _Error implements StockDetailsState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnTimeSeriesChangedImplCopyWith<$Res> {
+  factory _$$OnTimeSeriesChangedImplCopyWith(_$OnTimeSeriesChangedImpl value,
+          $Res Function(_$OnTimeSeriesChangedImpl) then) =
+      __$$OnTimeSeriesChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TimeSeries timeSeries});
+}
+
+/// @nodoc
+class __$$OnTimeSeriesChangedImplCopyWithImpl<$Res>
+    extends _$StockDetailsStateCopyWithImpl<$Res, _$OnTimeSeriesChangedImpl>
+    implements _$$OnTimeSeriesChangedImplCopyWith<$Res> {
+  __$$OnTimeSeriesChangedImplCopyWithImpl(_$OnTimeSeriesChangedImpl _value,
+      $Res Function(_$OnTimeSeriesChangedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StockDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? timeSeries = null,
+  }) {
+    return _then(_$OnTimeSeriesChangedImpl(
+      null == timeSeries
+          ? _value.timeSeries
+          : timeSeries // ignore: cast_nullable_to_non_nullable
+              as TimeSeries,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnTimeSeriesChangedImpl implements _OnTimeSeriesChanged {
+  const _$OnTimeSeriesChangedImpl(this.timeSeries);
+
+  @override
+  final TimeSeries timeSeries;
+
+  @override
+  String toString() {
+    return 'StockDetailsState.onTimeSeriesChanged(timeSeries: $timeSeries)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnTimeSeriesChangedImpl &&
+            (identical(other.timeSeries, timeSeries) ||
+                other.timeSeries == timeSeries));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, timeSeries);
+
+  /// Create a copy of StockDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnTimeSeriesChangedImplCopyWith<_$OnTimeSeriesChangedImpl> get copyWith =>
+      __$$OnTimeSeriesChangedImplCopyWithImpl<_$OnTimeSeriesChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(StockModel stocks, List<String> date,
+            List<DataPointModel> chartData)
+        loaded,
+    required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
+    required TResult Function() descriptionLoading,
+    required TResult Function(String description) descriptionLoaded,
+    required TResult Function(String error) descriptionError,
+  }) {
+    return onTimeSeriesChanged(timeSeries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(StockModel stocks, List<String> date,
+            List<DataPointModel> chartData)?
+        loaded,
+    TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
+    TResult? Function()? descriptionLoading,
+    TResult? Function(String description)? descriptionLoaded,
+    TResult? Function(String error)? descriptionError,
+  }) {
+    return onTimeSeriesChanged?.call(timeSeries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(StockModel stocks, List<String> date,
+            List<DataPointModel> chartData)?
+        loaded,
+    TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
+    TResult Function()? descriptionLoading,
+    TResult Function(String description)? descriptionLoaded,
+    TResult Function(String error)? descriptionError,
+    required TResult orElse(),
+  }) {
+    if (onTimeSeriesChanged != null) {
+      return onTimeSeriesChanged(timeSeries);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
+    required TResult Function(_DescriptionLoading value) descriptionLoading,
+    required TResult Function(_DescriptionLoaded value) descriptionLoaded,
+    required TResult Function(_DescriptionError value) descriptionError,
+  }) {
+    return onTimeSeriesChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
+    TResult? Function(_DescriptionLoading value)? descriptionLoading,
+    TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
+    TResult? Function(_DescriptionError value)? descriptionError,
+  }) {
+    return onTimeSeriesChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
+    TResult Function(_DescriptionLoading value)? descriptionLoading,
+    TResult Function(_DescriptionLoaded value)? descriptionLoaded,
+    TResult Function(_DescriptionError value)? descriptionError,
+    required TResult orElse(),
+  }) {
+    if (onTimeSeriesChanged != null) {
+      return onTimeSeriesChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnTimeSeriesChanged implements StockDetailsState {
+  const factory _OnTimeSeriesChanged(final TimeSeries timeSeries) =
+      _$OnTimeSeriesChangedImpl;
+
+  TimeSeries get timeSeries;
+
+  /// Create a copy of StockDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnTimeSeriesChangedImplCopyWith<_$OnTimeSeriesChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -837,6 +1052,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -853,6 +1069,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -869,6 +1086,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -887,6 +1105,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -901,6 +1120,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -915,6 +1135,7 @@ class _$DescriptionLoadingImpl implements _DescriptionLoading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -1007,6 +1228,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -1023,6 +1245,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -1039,6 +1262,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -1057,6 +1281,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -1071,6 +1296,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -1085,6 +1311,7 @@ class _$DescriptionLoadedImpl implements _DescriptionLoaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,
@@ -1185,6 +1412,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
             List<DataPointModel> chartData)
         loaded,
     required TResult Function(String error) error,
+    required TResult Function(TimeSeries timeSeries) onTimeSeriesChanged,
     required TResult Function() descriptionLoading,
     required TResult Function(String description) descriptionLoaded,
     required TResult Function(String error) descriptionError,
@@ -1201,6 +1429,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
             List<DataPointModel> chartData)?
         loaded,
     TResult? Function(String error)? error,
+    TResult? Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult? Function()? descriptionLoading,
     TResult? Function(String description)? descriptionLoaded,
     TResult? Function(String error)? descriptionError,
@@ -1217,6 +1446,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
             List<DataPointModel> chartData)?
         loaded,
     TResult Function(String error)? error,
+    TResult Function(TimeSeries timeSeries)? onTimeSeriesChanged,
     TResult Function()? descriptionLoading,
     TResult Function(String description)? descriptionLoaded,
     TResult Function(String error)? descriptionError,
@@ -1235,6 +1465,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_OnTimeSeriesChanged value) onTimeSeriesChanged,
     required TResult Function(_DescriptionLoading value) descriptionLoading,
     required TResult Function(_DescriptionLoaded value) descriptionLoaded,
     required TResult Function(_DescriptionError value) descriptionError,
@@ -1249,6 +1480,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult? Function(_DescriptionLoading value)? descriptionLoading,
     TResult? Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult? Function(_DescriptionError value)? descriptionError,
@@ -1263,6 +1495,7 @@ class _$DescriptionErrorImpl implements _DescriptionError {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_OnTimeSeriesChanged value)? onTimeSeriesChanged,
     TResult Function(_DescriptionLoading value)? descriptionLoading,
     TResult Function(_DescriptionLoaded value)? descriptionLoaded,
     TResult Function(_DescriptionError value)? descriptionError,

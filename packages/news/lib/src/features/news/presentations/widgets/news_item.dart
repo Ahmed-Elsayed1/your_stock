@@ -1,5 +1,5 @@
 import 'package:common/common.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class NewsItem extends StatelessWidget {
@@ -9,35 +9,34 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AppTheme.of(context);
     return InkWell(
       onTap: () {
         launchUrlString('${news.url}');
       },
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SizedBox(
-          height: 120,
-          width: 120,
-          child: Row(
-            children: [
-              //The Image
-              Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage('${news.bannerImage}'),
-                    fit: BoxFit.cover,
-                  ),
+        padding: EdgeInsets.all(theme.spacing.s),
+        child: Row(
+          children: [
+            //The Image
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(theme.spacing.xs),
+                image: DecorationImage(
+                  image: NetworkImage('${news.bannerImage}'),
+                  fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(
-                width: 2.5,
-              ),
-              Expanded(
-                child: ListTile(
-                  title: Text(
+            ),
+            const AppGap.s(),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
                     '${news.title}',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
@@ -45,7 +44,7 @@ class NewsItem extends StatelessWidget {
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  subtitle: Text(
+                  Text(
                     '${news.summary}',
                     style: const TextStyle(
                       fontWeight: FontWeight.w100,
@@ -53,10 +52,10 @@ class NewsItem extends StatelessWidget {
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:common/common.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 
 import '../../../news/news.dart';
@@ -13,7 +13,8 @@ class StockDetailsNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => getIt<StockNewsCubit>()..getAllNews(symbol: symbol),
+      create: (BuildContext context) =>
+          getIt<StockNewsCubit>()..getAllNews(symbol: symbol),
       child: Container(
         child: buildBlocWidget(),
       ),

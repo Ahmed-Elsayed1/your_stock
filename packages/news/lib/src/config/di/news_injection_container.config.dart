@@ -41,13 +41,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i59.StockNewsDataSource>(() => _i59.StockNewsDataSource());
     gh.factory<_i142.StockNewsRepository>(
         () => _i142.StockNewsRepository(gh<_i865.StockNewsDataSource>()));
+    gh.factory<_i5.StockNewsCubit>(
+        () => _i5.StockNewsCubit(gh<_i908.StockNewsRepository>()));
     gh.factory<_i1049.NewsRepository>(
         () => _i1049.NewsRepository(gh<_i307.NewsDataSource>()));
     gh.factory<_i978.NewsCubit>(
         () => _i978.NewsCubit(gh<_i82.NewsRepository>()));
-    gh.factory<_i5.StockNewsCubit>(() => _i5.StockNewsCubit(
-          gh<_i908.StockNewsRepository>(),
-        ));
     return this;
   }
 }

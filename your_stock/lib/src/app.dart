@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart' show AppFeaturesBuilder;
 
 class App extends StatefulWidget {
@@ -107,7 +106,9 @@ class _GlobalState extends State<App> {
         ),
       ),
       themeMode: ThemeMode.light,
-      builder: (context, child) => child ?? Container(),
+      builder: (context, child) => AppResponsiveTheme(
+        child: child ?? Container(),
+      ),
     );
   }
 }

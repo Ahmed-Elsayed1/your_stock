@@ -14,6 +14,9 @@ class StockDetailsState with _$StockDetailsState {
   }) = _Loaded;
   const factory StockDetailsState.error(String error) = _Error;
 
+  const factory StockDetailsState.onTimeSeriesChanged(TimeSeries timeSeries) =
+      _OnTimeSeriesChanged;
+
   const factory StockDetailsState.descriptionLoading() = _DescriptionLoading;
   const factory StockDetailsState.descriptionLoaded(String description) =
       _DescriptionLoaded;

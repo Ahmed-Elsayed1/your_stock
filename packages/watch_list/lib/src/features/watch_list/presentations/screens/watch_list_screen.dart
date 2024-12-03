@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 import 'package:stocks/stocks.dart';
 
@@ -21,12 +21,9 @@ class _WatchListScreenState extends State<WatchListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'WatchList',
-          ),
-          centerTitle: true,
+    return AppScaffold(
+        appbar: const AppScaffoldBar.center(
+          title: 'WatchList',
         ),
         body: FutureBuilder(
             future: cloudDb.getDocumentData(),
@@ -42,7 +39,8 @@ class _WatchListScreenState extends State<WatchListScreen> {
                         final ticker = tickers[index];
                         return MaterialButton(
                           onPressed: () {
-                            context.router.push(StockDetailsRoute(symbol: '$ticker'));
+                            context.router
+                                .push(StockDetailsRoute(symbol: '$ticker'));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
@@ -60,9 +58,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 0.2,
-                                ),
+                                const AppGap.xxxs(),
                                 Expanded(
                                   child: ListTile(
                                     title: Text(
@@ -84,13 +80,12 @@ class _WatchListScreenState extends State<WatchListScreen> {
                   } else if (snapshot.hasError) {
                     final error = snapshot.error;
                     if (error is CouldNotGetData) {
-                      asyncShowErrorDialog(
-                          context, "Couldn't find watchlist item");
+                      showErrorDialog(context, "Couldn't find watchlist item");
                     } else if (error is GenericDataException) {
-                      asyncShowErrorDialog(context, "User data error");
+                      showErrorDialog(context, "User data error");
                     }
                   }
-                  return const CircularProgressIndicator();
+                  return const SizedBox.shrink();
                 default:
                   return const CircularProgressIndicator();
               }

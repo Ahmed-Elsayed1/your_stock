@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:home/home.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 
@@ -47,7 +47,7 @@ class GoogleSignInButtonState extends State<GoogleSignInButton> {
                   final watchlistDb = CloudDb();
                   watchlistDb.createWatchList();
                   if (!context.mounted) return;
-                  context.router.popAndPush(const HomeRoute());
+                  context.router.replace(const HomeRoute());
                 }
               },
               child: const Padding(

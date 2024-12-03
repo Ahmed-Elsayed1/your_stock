@@ -11,7 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i2;
 import 'package:common/src/features/search/presentations/screens/search_screen.dart'
     as _i1;
-import 'package:flutter/material.dart' as _i3;
+import 'package:your_stock_design_system/your_stock_design_system.dart' as _i3;
 
 /// generated route for
 /// [_i1.SearchScreen]

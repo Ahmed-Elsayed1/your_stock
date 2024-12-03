@@ -1,5 +1,5 @@
 import 'package:your_stock_core/your_stock_core.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import '../../../../../authentication.dart';
 
@@ -14,9 +14,9 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Verify account'),
+    return AppScaffold(
+      appbar: const AppScaffoldBar.leadingTitle(
+        title: 'Verify account',
       ),
       body: Column(
         children: [

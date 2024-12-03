@@ -1,5 +1,5 @@
 import 'package:your_stock_core/your_stock_core.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import '../routes/app_router.dart';
 

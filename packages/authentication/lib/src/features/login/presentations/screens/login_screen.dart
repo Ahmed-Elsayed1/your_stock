@@ -1,7 +1,6 @@
 import 'package:your_stock_core/your_stock_core.dart';
 import 'package:home/home.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import '../../../../../authentication.dart';
 
@@ -35,9 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
+    return AppScaffold(
+      appbar: const AppScaffoldBar.leadingTitle(
+        title: 'Login',
       ),
       body: Column(
         children: [
@@ -81,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     final watchlistDb = CloudDb();
                     watchlistDb.createWatchList();
                     if (!context.mounted) return;
-                    context.router.popAndPush(const HomeRoute());
+                    context.router.replace(const HomeRoute());
                   } else {
                     if (!context.mounted) return;
                     context.router.popAndPush(const VerificationRoute());

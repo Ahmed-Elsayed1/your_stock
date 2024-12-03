@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 import 'package:authentication/authentication.dart';
-import 'package:home/home.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {
@@ -11,8 +10,10 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseAuthProvider authProvider = FirebaseAuthProvider();
     final currentUser = authProvider.currentUser;
-    return Scaffold(
-        appBar: null, // Hide the app bar
+    return AppScaffold(
+        appbar: const AppScaffoldBar.center(
+          title: "Settings",
+        ),
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +34,6 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () async {
-                          GlobalCubit.get(context);
                           final db = CloudDb();
                           final authProvider = FirebaseAuthProvider();
                           try {
@@ -67,12 +67,10 @@ class SettingsScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red),
                         child: const Text("Delete this account")),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const AppGap.xxs(),
                     ElevatedButton(
                         onPressed: () async {
-                          final shouldLogout = await showLogoutDialog(context);
+                          final shouldLogout = await _showLogoutDialog(context);
                           if (shouldLogout) {
                             await AuthService.firebase().logOut();
                             if (!context.mounted) return;
@@ -94,30 +92,30 @@ class SettingsScreen extends StatelessWidget {
           ],
         )));
   }
-}
 
-Future<bool> showLogoutDialog(context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('log out'),
-        content: const Text('Are you sure that you want to log out?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('Cancle'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('Log out'),
-          ),
-        ],
-      );
-    },
-  ).then((value) => value ?? false);
+  Future<bool> _showLogoutDialog(context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('log out'),
+          content: const Text('Are you sure that you want to log out?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.router.maybePop(false);
+              },
+              child: const Text('Cancle'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.router.maybePop(true);
+              },
+              child: const Text('Log out'),
+            ),
+          ],
+        );
+      },
+    ).then((value) => value ?? false);
+  }
 }

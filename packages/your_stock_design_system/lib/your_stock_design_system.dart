@@ -1,7 +1,5 @@
-library your_stock_design_system;
-
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/src.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter/foundation.dart';
+export 'package:flutter/gestures.dart';
+export 'package:flutter/services.dart';

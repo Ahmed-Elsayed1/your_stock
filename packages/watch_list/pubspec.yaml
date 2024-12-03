@@ -20,6 +20,8 @@ dependencies:
   # Packages
   your_stock_core:
     path: ../your_stock_core
+  your_stock_design_system:
+    path: ../your_stock_design_system
   stocks:
     path: ../stocks
 

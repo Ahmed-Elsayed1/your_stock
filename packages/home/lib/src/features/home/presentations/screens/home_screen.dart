@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart';
-
-import '../cubit/cubit.dart';
+import 'package:stocks/stocks.dart';
+import 'package:watch_list/watch_list.dart';
+import 'package:news/news.dart';
+import 'package:settings/settings.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -9,51 +11,50 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => GlobalCubit(),
-      child: BlocConsumer<GlobalCubit, GlobalState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = GlobalCubit.get(context);
-
-          return Scaffold(
-            body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
-              onTap: (index) {
-                cubit.changeBottomNavBar(index);
-              },
-              items: cubit.bottomItems,
-            ),
-          );
-        },
-      ),
+    return AutoTabsRouter.pageView(
+      physics: const NeverScrollableScrollPhysics(),
+      routes: const [
+        StocksRoute(),
+        WatchListRoute(),
+        NewsRoute(),
+        SettingsRoute(),
+      ],
+      builder: (context, child, _) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return AppScaffold(
+          body: child,
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) => tabsRouter.setActiveIndex(index),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.bar_chart_rounded,
+                ),
+                label: 'Stocks',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite_border_outlined,
+                ),
+                label: 'WatchList',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.newspaper_rounded,
+                ),
+                label: 'News',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings,
+                ),
+                label: 'Settings',
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
-}
-
-Future<bool> showLogoutDialog(context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('log out'),
-        content: const Text('Are you sure that you want to log out?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('Cancle'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('Log out'),
-          ),
-        ],
-      );
-    },
-  ).then((value) => value ?? false);
 }

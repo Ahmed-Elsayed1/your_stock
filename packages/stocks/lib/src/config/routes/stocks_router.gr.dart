@@ -9,11 +9,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i4;
 import 'package:stocks/src/features/stock_details/presentations/screens/stock_details_screen.dart'
     as _i1;
 import 'package:stocks/src/features/stocks/presentations/screens/stocks_screen.dart'
     as _i2;
+import 'package:your_stock_design_system/your_stock_design_system.dart' as _i4;
 
 /// generated route for
 /// [_i1.StockDetailsScreen]
@@ -63,13 +63,10 @@ class StockDetailsRouteArgs {
 
 /// generated route for
 /// [_i2.StocksScreen]
-class StocksRoute extends _i3.PageRouteInfo<StocksRouteArgs> {
-  StocksRoute({
-    _i4.Key? key,
-    List<_i3.PageRouteInfo>? children,
-  }) : super(
+class StocksRoute extends _i3.PageRouteInfo<void> {
+  const StocksRoute({List<_i3.PageRouteInfo>? children})
+      : super(
           StocksRoute.name,
-          args: StocksRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -78,20 +75,7 @@ class StocksRoute extends _i3.PageRouteInfo<StocksRouteArgs> {
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<StocksRouteArgs>(orElse: () => const StocksRouteArgs());
-      return _i2.StocksScreen(key: args.key);
+      return const _i2.StocksScreen();
     },
   );
-}
-
-class StocksRouteArgs {
-  const StocksRouteArgs({this.key});
-
-  final _i4.Key? key;
-
-  @override
-  String toString() {
-    return 'StocksRouteArgs{key: $key}';
-  }
 }

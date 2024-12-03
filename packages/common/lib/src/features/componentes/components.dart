@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -14,22 +13,19 @@ Widget defaultButton({
         color: background,
         borderRadius: BorderRadius.circular(50.0),
       ),
-
       child: MaterialButton(
-        onPressed: ()
-        {
+        onPressed: () {
           function();
         },
         child: Text(
           text.toUpperCase(),
-          style:const TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w900,
           ),
         ),
       ),
     );
-
 
 Widget defaultFormField({
   required TextEditingController controller,
@@ -43,37 +39,35 @@ Widget defaultFormField({
   required String underLineText,
   IconData? suffix,
   Function? suffixPressed,
-
-}
-    )=>TextFormField(
-  controller: controller,
-  obscureText: isPassword,
-  keyboardType: TextInputType.emailAddress,
-  validator: (value){
-    if(value.toString().isEmpty)
-    {
-      return underLineText;
-    }
-    return null;
-  },
-  onFieldSubmitted: (String value){
-    onSubmit!(value);
-  },
-  onChanged: (String value){
-    onChange!(value);
-  },
-  decoration: InputDecoration(
-    labelText: lable,
-    border: const OutlineInputBorder(),
-    prefixIcon: Icon(
-      prefix,
-    ),
-    suffixIcon: suffix!=null ?
-    IconButton(
-        onPressed: suffixPressed!() ,
-        icon: Icon(
-          suffix,
-        )
-    ): null,
-  ),
-);
+}) =>
+    TextFormField(
+      controller: controller,
+      obscureText: isPassword,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value.toString().isEmpty) {
+          return underLineText;
+        }
+        return null;
+      },
+      onFieldSubmitted: (String value) {
+        onSubmit!(value);
+      },
+      onChanged: (String value) {
+        onChange!(value);
+      },
+      decoration: InputDecoration(
+        labelText: lable,
+        border: const OutlineInputBorder(),
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed!(),
+                icon: Icon(
+                  suffix,
+                ))
+            : null,
+      ),
+    );

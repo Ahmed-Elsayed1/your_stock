@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 
 import '../cubit/cubit.dart';
@@ -10,24 +10,27 @@ class StockDescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StockDetailsCubit(symbol)..getDescriptionData(),
-      child: BlocBuilder<StockDetailsCubit, StockDetailsState>(
-        builder: (context, state) => state.maybeWhen(
-          orElse: () => const SizedBox.shrink(),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          descriptionLoaded: (description) => Text(
-            description,
-            style: TextStyle(
-              color: Colors.black.withOpacity(0.6),
-              fontSize: 14,
-              height: 1.5,
-            ),
-          ),
-          error: (error) => Center(
-            child: Text(error),
+    return BlocBuilder<StockDetailsCubit, StockDetailsState>(
+      buildWhen: (context, state) => state.maybeWhen(
+        orElse: () => false,
+        descriptionLoading: () => true,
+        descriptionLoaded: (_) => true,
+        descriptionError: (_) => true,
+      ),
+      builder: (context, state) => state.maybeWhen(
+        orElse: () => const SizedBox.shrink(),
+        descriptionLoading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        descriptionError: (error) => Center(
+          child: Text(error),
+        ),
+        descriptionLoaded: (description) => Text(
+          description,
+          style: TextStyle(
+            color: Colors.black.withOpacity(0.6),
+            fontSize: 14,
+            height: 1.5,
           ),
         ),
       ),

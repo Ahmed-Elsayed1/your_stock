@@ -1,5 +1,5 @@
 import 'package:common/common.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
@@ -9,23 +9,31 @@ import '../cubit/cubit.dart';
 
 class StockDetailsChartWidget extends StatelessWidget {
   final String symbol;
+  final TimeSeries? timeSeries;
 
-  const StockDetailsChartWidget({super.key, required this.symbol});
+  const StockDetailsChartWidget({
+    super.key,
+    required this.symbol,
+    this.timeSeries,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StockDetailsCubit(symbol)..getDataminute(),
-      child: BlocBuilder<StockDetailsCubit, StockDetailsState>(
-        builder: (context, state) => state.maybeWhen(
+    return BlocBuilder<StockDetailsCubit, StockDetailsState>(
+      builder: (context, state) {
+        final cubit = context.read<StockDetailsCubit>();
+        return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
           loading: () => const Center(
             child: CircularProgressIndicator(),
           ),
+          error: (error) => Center(
+            child: Text(error),
+          ),
           loaded: (stocks, date, chartData) => Column(
             children: [
               Text(
-                '\$${stocks.timeSeries![0].close}',
+                '\$${stocks.ohlc![0].close}',
                 style: GoogleFonts.sora(
                   fontSize: 30,
                   color: Colors.black,
@@ -34,11 +42,13 @@ class StockDetailsChartWidget extends StatelessWidget {
               ),
               SfCartesianChart(
                 primaryXAxis: DateTimeAxis(
-                  dateFormat: DateFormat.Hms(),
+                  dateFormat:
+                      _getDateFormat(cubit.timeSeries ?? TimeSeries.minute),
                   majorGridLines: const MajorGridLines(width: 0),
                 ),
-                primaryYAxis:
-                    NumericAxis(numberFormat: NumberFormat.simpleCurrency()),
+                primaryYAxis: NumericAxis(
+                  numberFormat: NumberFormat.simpleCurrency(),
+                ),
                 series: <CartesianSeries<DataPointModel, DateTime>>[
                   CandleSeries<DataPointModel, DateTime>(
                     name: symbol,
@@ -60,11 +70,14 @@ class StockDetailsChartWidget extends StatelessWidget {
               ),
             ],
           ),
-          error: (error) => Center(
-            child: Text(error),
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
+
+  DateFormat _getDateFormat(TimeSeries timeSeries) => switch (timeSeries) {
+        TimeSeries.minute => DateFormat.Hms(),
+        TimeSeries.week => DateFormat.yMd(),
+        TimeSeries.month => DateFormat.yMMMM(),
+      };
 }

@@ -1,5 +1,5 @@
 import 'package:your_stock_core/your_stock_core.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import '../../../../../authentication.dart';
 
@@ -36,9 +36,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Signup"),
+    return AppScaffold(
+      appbar: const AppScaffoldBar.leadingTitle(
+        title: "Signup",
       ),
       body: Column(
         children: [
@@ -92,6 +92,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     confirmpassword: confirmpassword,
                   );
                   AuthService.firebase().sendEmailVerification();
+                  if (!context.mounted) return;
                   context.router.push(const VerificationRoute());
                 } on WeakPasswordAuthException {
                   await showErrorDialog(

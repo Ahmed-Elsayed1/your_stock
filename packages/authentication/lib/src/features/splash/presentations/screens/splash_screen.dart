@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:authentication/authentication.dart';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:home/home.dart';
 import 'package:your_stock_core/your_stock_core.dart';
 
@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     final user = AuthService.firebase().currentUser;
     Timer(
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,

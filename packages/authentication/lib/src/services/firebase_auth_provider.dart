@@ -1,15 +1,15 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart'
     show
-        AuthCredential,
         FirebaseAuth,
         FirebaseAuthException,
         GoogleAuthProvider,
-        User,
-        UserCredential;
+        User;
 import 'package:your_stock_core/your_stock_core.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import 'services.dart';
 
@@ -134,39 +134,28 @@ class FirebaseAuthProvider implements AuthProvider {
 
   @override
   Future<User?> signInWithGoogle() async {
-    GoogleSignIn? googleSignIn = initializeGoogleSignin();
     if (!kIsWeb) {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      User? user;
+      try {
+        // Trigger the authentication flow
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      GoogleSignInAccount? googleSignInAccount = await googleSignIn!.signIn();
+        // Obtain the auth details from the request
+        final GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
 
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
+        // Create a new credential
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
         );
 
-        try {
-          final UserCredential userCredential =
-              await auth.signInWithCredential(credential);
-
-          user = userCredential.user;
-        } on FirebaseAuthException catch (e) {
-          if (e.code == 'account-exists-with-different-credential') {
-            throw AccountExistsWithDifferentCredentialAuthException();
-          } else if (e.code == 'invalid-credential') {
-            throw InvalidCredentialAuthException();
-          }
-        } catch (e) {
-          throw GenericAuthException();
-        }
+        // Once signed in, return the UserCredential
+        final credentials =
+            await FirebaseAuth.instance.signInWithCredential(credential);
+        return credentials.user;
+      } catch (e) {
+        log('$e');
       }
-
-      return user;
     }
     return null;
   }

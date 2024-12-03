@@ -1,6 +1,7 @@
 name: your_stock_design_system
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -10,6 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  gap: ^3.0.1
+
+    
+  your_stock_core:
+    path: ../your_stock_core
 
 dev_dependencies:
   flutter_test:

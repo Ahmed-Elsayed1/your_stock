@@ -36,6 +36,9 @@ dependencies:
   firebase_auth: ^5.3.1
   cloud_firestore: ^5.4.4
 
+  your_stock_design_system:
+    path: ../your_stock_design_system
+
 
 dev_dependencies:
   flutter_test:

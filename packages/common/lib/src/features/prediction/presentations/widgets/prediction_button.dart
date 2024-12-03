@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+import 'package:your_stock_design_system/your_stock_design_system.dart';
 import 'package:http/http.dart';
 
 class PredictionButton extends StatefulWidget {
@@ -40,9 +40,7 @@ class _PredictionButton extends State<PredictionButton> {
           ),
           child: Text('Predict'.toUpperCase()),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const AppGap.l(),
         Text(
           predictionText,
           style:
