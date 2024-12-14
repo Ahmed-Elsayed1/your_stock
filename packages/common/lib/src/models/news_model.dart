@@ -4,8 +4,7 @@ class NewsModel {
   String? summary;
   String? bannerImage;
 
-
-    NewsModel.fromJson (Map<String, dynamic> json){
+  NewsModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     url = json['url'];
     summary = json['summary'];
