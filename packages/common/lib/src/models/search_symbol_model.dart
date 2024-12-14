@@ -10,9 +10,9 @@ class SearchSymbolModel {
   SearchSymbolModel.fromJson(Map<String, dynamic> map) {
     if (map['bestMatches'] != null) {
       bestMatches = <BestMatchesModel>[];
-      map['bestMatches'].forEach((v) {
-        bestMatches!.add(BestMatchesModel.fromJson(v));
-      });
+      map['bestMatches'].forEach(
+        (v) => bestMatches!.add(BestMatchesModel.fromJson(v)),
+      );
     }
   }
 }
