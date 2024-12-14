@@ -1,6 +1,6 @@
 import 'package:common/src/models/interaday_model.dart';
 
-enum TimeSeries {minute, week, month }
+enum TimeSeries { minute, week, month }
 
 class StockModel {
   String? name;
@@ -13,13 +13,13 @@ class StockModel {
     this.ohlc,
   });
 
-  factory StockModel.fromJson(Map<String, dynamic> map,{String? function}) {
+  factory StockModel.fromJson(Map<String, dynamic> map, {String? function}) {
     final ohlc = <InteradayModel>[];
     final ohlcData = map['$function'];
     if (ohlcData != null) {
-      ohlcData.forEach((key, value) {
-        ohlc.add(InteradayModel.fromJson(value));
-      });
+      ohlcData.forEach(
+        (key, value) => ohlc.add(InteradayModel.fromJson(value)),
+      );
     }
     return StockModel(
       ohlc: ohlc,
