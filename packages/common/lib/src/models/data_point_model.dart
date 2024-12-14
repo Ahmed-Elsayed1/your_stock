@@ -5,5 +5,11 @@ class DataPointModel {
   final double high;
   final double low;
 
-  DataPointModel(this.xValue, this.open, this.close, this.high, this.low);
+  DataPointModel(
+    this.xValue,
+    this.open,
+    this.close,
+    this.high,
+    this.low,
+  );
 }
