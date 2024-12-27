@@ -11,7 +11,6 @@ class AddToWatchListButton extends StatefulWidget {
 
 class _AddToWatchListButton extends State<AddToWatchListButton> {
   final bool favorite = false;
-  final CloudDb cloudDb = CloudDb();
   bool? isWatched;
 
   @override
@@ -42,12 +41,12 @@ class _AddToWatchListButton extends State<AddToWatchListButton> {
   }
 
   Future<void> changeWatchListState(String ticker) async {
-    bool isExist = await cloudDb.isValueExist("ticker", ticker);
+    bool isExist = await CloudDb.instance.isValueExist("ticker", ticker);
     if (isExist) {
-      await cloudDb.removeItemFromUserData("ticker", ticker);
+      await CloudDb.instance.removeItemFromUserData("ticker", ticker);
       isExist = !isExist;
     } else {
-      await cloudDb.addItemToUserData("ticker", ticker);
+      await CloudDb.instance.addItemToUserData("ticker", ticker);
       isExist = !isExist;
     }
     setState(() {
@@ -56,7 +55,7 @@ class _AddToWatchListButton extends State<AddToWatchListButton> {
   }
 
   Future<bool> checkExistance(String ticker) async {
-    bool isExist = await cloudDb.isValueExist("ticker", ticker);
+    bool isExist = await CloudDb.instance.isValueExist("ticker", ticker);
     return isExist;
   }
 }

@@ -4,7 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'crud.dart';
 
 class CloudDb {
+  CloudDb._cloudDb();
+
+  static final CloudDb instance = CloudDb._cloudDb();
+
   String userId = FirebaseAuth.instance.currentUser!.uid;
+
+  
   final CollectionReference collection =
       FirebaseFirestore.instance.collection("usersWatchList");
 
