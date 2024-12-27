@@ -1,0 +1,1 @@
+export 'stock_details_news_widget.dart';

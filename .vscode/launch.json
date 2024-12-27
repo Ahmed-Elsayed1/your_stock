@@ -5,11 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Graduation-Project",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
             "name": "your_stock",
             "cwd": "your_stock",
             "request": "launch",
@@ -29,85 +24,5 @@
             "type": "dart",
             "flutterMode": "release"
         },
-        {
-            "name": "news",
-            "cwd": "packages\\news",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "news (profile mode)",
-            "cwd": "packages\\news",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "news (release mode)",
-            "cwd": "packages\\news",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "settings",
-            "cwd": "packages\\settings",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "settings (profile mode)",
-            "cwd": "packages\\settings",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "settings (release mode)",
-            "cwd": "packages\\settings",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "stocks",
-            "cwd": "packages\\stocks",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "stocks (profile mode)",
-            "cwd": "packages\\stocks",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "stocks (release mode)",
-            "cwd": "packages\\stocks",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "watch_list",
-            "cwd": "packages\\watch_list",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "watch_list (profile mode)",
-            "cwd": "packages\\watch_list",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "watch_list (release mode)",
-            "cwd": "packages\\watch_list",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
     ]
 }

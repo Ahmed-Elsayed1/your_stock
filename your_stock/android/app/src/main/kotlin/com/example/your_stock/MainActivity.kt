@@ -1,4 +1,4 @@
-package com.example.your_stock
+package eg.Almoghair.yourstock
 
 import io.flutter.embedding.android.FlutterActivity
 
