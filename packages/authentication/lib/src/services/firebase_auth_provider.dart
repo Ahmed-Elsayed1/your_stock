@@ -3,25 +3,19 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart'
-    show
-        FirebaseAuth,
-        FirebaseAuthException,
-        GoogleAuthProvider,
-        User;
+    show FirebaseAuth, FirebaseAuthException, GoogleAuthProvider, User;
 import 'package:your_stock_core/your_stock_core.dart';
 import 'package:your_stock_design_system/your_stock_design_system.dart';
 
 import 'services.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
-  GoogleSignIn? initializeGoogleSignin() {
-    if (!kIsWeb) {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-      return googleSignIn;
-    } else {
-      return null;
-    }
-  }
+  FirebaseAuthProvider._firebaseAuthProvider();
+
+  static final FirebaseAuthProvider instance =
+      FirebaseAuthProvider._firebaseAuthProvider();
+
+  GoogleSignIn? initializeGoogleSignin() => !kIsWeb ? GoogleSignIn() : null;
 
   @override
   Future<AuthUser> createUser({
@@ -37,23 +31,21 @@ class FirebaseAuthProvider implements AuthProvider {
         );
         final user = currentUser;
         if (user != null) {
-          final watchlistDb = CloudDb();
-          watchlistDb.createWatchList();
+          CloudDb.instance.createWatchList();
           return user;
         } else {
           throw UserNotLoggedInException();
         }
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          throw WeakPasswordAuthException();
-        } else if (e.code == 'email-already-in-use') {
-          throw EmailAlreadyInUseAuthException();
-        } else if (e.code == 'invalid-email') {
-          throw InvalidEmailAuthException();
-        } else if (e.code == 'unknown') {
-          throw GenericAuthException();
-        } else {
-          throw GenericAuthException();
+        switch (e.code) {
+          case 'weak-password':
+            throw WeakPasswordAuthException();
+          case 'email-already-in-use':
+            throw EmailAlreadyInUseAuthException();
+          case 'invalid-email':
+            throw InvalidEmailAuthException();
+          default:
+            throw GenericAuthException();
         }
       } catch (_) {
         throw GenericAuthException();
@@ -66,11 +58,7 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   AuthUser? get currentUser {
     final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      return AuthUser.fromFirebase(user);
-    } else {
-      return null;
-    }
+    return user != null ? AuthUser.fromFirebase(user) : null;
   }
 
   @override
@@ -85,21 +73,20 @@ class FirebaseAuthProvider implements AuthProvider {
       );
       final user = currentUser;
       if (user != null) {
-        final watchlistDb = CloudDb();
-        watchlistDb.createWatchList();
+        CloudDb.instance.createWatchList();
         return user;
-      } else {
-        throw UserNotLoggedInException();
       }
+      throw UserNotLoggedInException();
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw UserNotFoundAuthException();
-      } else if (e.code == 'wrong-password') {
-        throw WrongPasswordAuthException();
-      } else if (e.code == 'invalid-email') {
-        throw InvalidEmailAuthException();
-      } else {
-        throw GenericAuthException();
+      switch (e.code) {
+        case 'user-not-found':
+          throw UserNotFoundAuthException();
+        case 'wrong-password':
+          throw UserNotFoundAuthException();
+        case 'invalid-email':
+          throw UserNotFoundAuthException();
+        default:
+          throw GenericAuthException();
       }
     } catch (_) {
       throw GenericAuthException();
@@ -170,10 +157,11 @@ class FirebaseAuthProvider implements AuthProvider {
         }
       }
     } on FirebaseAuthException catch (e) {
-      if (e.code == "requires-recent-login") {
-        throw RequiresRecentLogin();
-      } else {
-        throw GenericAuthException();
+      switch (e.code) {
+        case 'requires-recent-login':
+          throw RequiresRecentLogin();
+        default:
+          throw GenericAuthException();
       }
     }
   }
@@ -181,9 +169,7 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   Future<void> initialize(FirebaseOptions? options) async {
     if (Firebase.apps.isEmpty) {
-      await Firebase.initializeApp(
-        options: options,
-      );
+      await Firebase.initializeApp(options: options);
     }
   }
 

@@ -8,8 +8,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuthProvider authProvider = FirebaseAuthProvider();
-    final currentUser = authProvider.currentUser;
+    final currentUser = FirebaseAuthProvider.instance.currentUser;
     return AppScaffold(
         appbar: const AppScaffoldBar.center(
           title: "Settings",
@@ -34,11 +33,9 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () async {
-                          final db = CloudDb();
-                          final authProvider = FirebaseAuthProvider();
                           try {
-                            db.deleteWatchList();
-                            authProvider.deleteUser();
+                            CloudDb.instance.deleteWatchList();
+                            FirebaseAuthProvider.instance.deleteUser();
                             context.router.pushAndPopUntil(
                               const LoginRoute(),
                               predicate: (_) => false,
@@ -49,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                               context,
                               'Requires Recent Login, Try to re-login and try again.',
                             );
-                            await authProvider.logOut();
+                            await FirebaseAuthProvider.instance.logOut();
                             if (!context.mounted) return;
                             context.router.pushAndPopUntil(
                               const LoginRoute(),
