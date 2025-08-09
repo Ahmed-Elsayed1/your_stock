@@ -18,13 +18,6 @@ The app’s standout feature is its **weekly stock price prediction** using a Ma
 - **Firebase** (Auth, Firestore)
 - **Cloud Deployment** for ML API
 
-## 📱 Screenshots
-![YourStock 1](https://github.com/user-attachments/assets/ccd1c2b0-8bde-41b2-8057-8745e233ac1e)
-![YourStock 2](https://github.com/user-attachments/assets/700632fa-5874-4160-bf8e-e8ccb5081d43)
-![YourStock 3](https://github.com/user-attachments/assets/20a995a9-0172-4d30-bd31-d28e42f6a1ab)
-![YourStock 4](https://github.com/user-attachments/assets/ae220109-e239-4109-8b4a-38b5f1507f6a)
-
-
 ## 🎓 Background
 - Graduation project at Helwan University (Faculty of Computers & Artificial Intelligence).
 - Designed & implemented both frontend and backend.
@@ -33,6 +26,13 @@ The app’s standout feature is its **weekly stock price prediction** using a Ma
 ## 📎 Links
 - [APK Download](https://drive.google.com/file/d/1UIduq13m9TkIeeTGJ6YK-OTwuH9KHIfa/view?usp=sharing)
 - [LinkedIn](https://linkedin.com/in/ahmed-elsayed-36880821a)
+
+## 📱 Screenshots
+![YourStock 1](https://github.com/user-attachments/assets/ccd1c2b0-8bde-41b2-8057-8745e233ac1e)
+![YourStock 2](https://github.com/user-attachments/assets/700632fa-5874-4160-bf8e-e8ccb5081d43)
+![YourStock 3](https://github.com/user-attachments/assets/20a995a9-0172-4d30-bd31-d28e42f6a1ab)
+![YourStock 4](https://github.com/user-attachments/assets/ae220109-e239-4109-8b4a-38b5f1507f6a)
+
 
 ## 📥 Installation
 ```bash
