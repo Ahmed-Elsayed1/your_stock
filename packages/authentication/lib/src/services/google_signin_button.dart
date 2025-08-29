@@ -44,8 +44,7 @@ class GoogleSignInButtonState extends State<GoogleSignInButton> {
                 });
 
                 if (user != null) {
-                  final watchlistDb = CloudDb();
-                  watchlistDb.createWatchList();
+                  CloudDb.instance.createWatchList();
                   if (!context.mounted) return;
                   context.router.replace(const HomeRoute());
                 }

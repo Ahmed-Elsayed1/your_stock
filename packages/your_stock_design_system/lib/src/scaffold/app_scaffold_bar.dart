@@ -11,7 +11,7 @@ class AppScaffoldBar extends StatelessWidget implements PreferredSizeWidget {
     this.withBackButton = false,
     this.automaticallyImplyLeading = false,
     this.title,
-    this.elevation = 0,
+    this.elevation = 0.5,
     this.backgroundColor,
     // this.profileInfoWiget,
   }) : centerTitle = true;
